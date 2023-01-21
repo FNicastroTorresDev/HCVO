@@ -1,0 +1,23 @@
+.toc-ul {
+  list-style: none;
+  list-style-position: inherit;
+  width: 100%;
+  padding-left: 0px;
+}
+
+.toc-li {
+  padding: 2px 5px;
+  border-bottom: 1px solid rgb(104, 51, 204, 0.2);
+}
+
+.toc-li:hover {
+  background-color: rgb(104, 51, 204, 0.2);
+}
+
+.toc-link {
+  text-decoration: none;
+  color: black;
+}
+
+
+

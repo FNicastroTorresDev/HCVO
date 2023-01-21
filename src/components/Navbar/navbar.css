@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.custom-bg-color {
+  background-color: var(--rosa-pastel) !important;
+}
+
+.logo-size {
+  width: 64px;
+  height: auto;
+  border-radius: 8px;
+}

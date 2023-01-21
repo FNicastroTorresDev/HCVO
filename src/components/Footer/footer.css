@@ -1,0 +1,13 @@
+@import url(/src/style.css);
+
+footer {
+  height: 150px;
+}
+
+.custom-bg-color {
+  background-color: var(--rosa-pastel) !important;
+}
+
+.custom-p {
+  text-align: center !important;
+}

@@ -1,0 +1,12 @@
+.custom-box {
+  width: 54rem;
+  border-radius: 8px;
+  box-shadow: 2px 2px 2px 1px rgb(104, 51, 204, 0.2);
+  padding: 10px 25px;
+}
+
+@media screen and (max-width: 768px) {
+  .custom-box {
+    width: 34rem;
+  }
+}
