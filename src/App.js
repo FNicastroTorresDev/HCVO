@@ -1,17 +1,18 @@
-import Footer from './components/Footer/Footer';
-import Navbar from './components/Navbar/Navbar';
-import LoginForm from './components/LoginForm/LoginForm';
-import PetFile from './components/PetFile/PetFile';
+import { Route, Routes as Swtich } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import LoginPage from './pages/LoginPage/LoginPage';
+import MedicalFileView from './pages/MedicalFileView/MedicalFileView';
 
 function App() {
   return (
-    <div>
-      <Navbar />
+    <Swtich>
 
-      <PetFile />
+      <Route path='/login' element={<LoginPage />} />
+      <Route path='/medical-file' element={<MedicalFileView />} />
+      <Route path='/' element={<Home />} />
 
-      <Footer />
-    </div>
+    </Swtich>
+
   );
 }
 

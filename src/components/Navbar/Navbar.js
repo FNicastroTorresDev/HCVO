@@ -1,12 +1,13 @@
-import './navbar.css'
+import { NavLink } from 'react-router-dom'
 import logo from './logo256.png'
+import './navbar.css'
 
 const Navbar = () => {
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary custom-bg-color">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#"><img className='logo-size' src={logo} alt="Logo Centro Veterinario Jujuy"/></a>
+        <NavLink className="navbar-brand" exact to={'/'}><img className='logo-size' src={logo} alt="Logo Centro Veterinario Jujuy"/></NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
