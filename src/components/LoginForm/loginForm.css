@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.custom-form {
+  box-shadow: 3px 3px 3px 3px rgb(104, 51, 204, 0.2);
+  border-radius: 10px;
+  width: 350px;
+  margin: 50px auto;
+  padding: 25px;
+}
+
+.custom-btn-color {
+  background-color: var(--rosa-pastel);
+}
+
+.custom-btn-color:hover {
+  background-color: var(--morado);
+  color: white;
+}
+
+.img-logo-size {
+  height: 100px;
+  width: auto;
+}
+
+.text-color {
+  font-weight: bold;
+  color: var(--morado-logo)
+}
