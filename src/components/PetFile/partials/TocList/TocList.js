@@ -3,7 +3,7 @@ import './tocList.css'
 
 const TocList = () => {
   return (
-    <nav id="toc-list" className='card custom-shadow'>
+    <nav id="toc-list" className='card custom-shadow custom-lg-position'>
       <ul className='toc-ul'>
         <li className='toc-li'>
           <a className='toc-link' href='#anamnesis'>
@@ -27,7 +27,7 @@ const TocList = () => {
         </li>
         <li className='toc-li'>
           <a className='toc-link' href='#trat-evo'>
-            Tratamientos y evolución
+            Tratamientos evolución
           </a>
         </li>
         <li className='toc-li'>
@@ -51,7 +51,7 @@ const TocList = () => {
           </a>
         </li>
         <li className='toc-li'>
-          <a className='toc-link' href='#3er-parp'>
+          <a className='toc-link' href='#tercer-parp'>
             3er. párpado
           </a>
         </li>
@@ -61,8 +61,8 @@ const TocList = () => {
           </a>
         </li>
         <li className='toc-li'>
-          <a className='toc-link' href='#cornea-esde'>
-            Córnea esderótica
+          <a className='toc-link' href='#cornea-escle'>
+            Córnea esclerótica
           </a>
         </li>
         <li className='toc-li'>

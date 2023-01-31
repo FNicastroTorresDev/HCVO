@@ -1,10 +1,10 @@
 import React from 'react'
-import EditButton from '../EditButton/EditButton'
+import EditButton from '../../../EditButton/EditButton'
 import './petCard.css'
 
 const PetCard = () => {
   return (
-    <section className='card card-width custom-shadow'>
+    <section className='card card-width custom-shadow custom-lg-position'>
       <h2 id='pet-name' className='card-title text-center my-2'>Firulais</h2>
       <div className='card-body'>
         <small for="pet-owner">Dueño/a:</small>
