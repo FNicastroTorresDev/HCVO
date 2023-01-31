@@ -1,0 +1,12 @@
+.custom-checkbox {
+  margin-top: 8px;
+  margin-right: 5px;
+  height: 15px;
+  width: 15px;
+  background-color: var(--rosa-pastel);
+}
+
+.custom-checkbox:checked {
+  outline: 2px solid var(--morado);
+}
+

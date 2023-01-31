@@ -1,0 +1,46 @@
+.eyeTable {
+  border-top: 1px solid black;
+  width: 100%;
+}
+
+[id$="od"] {
+  border-right: 1px solid black;
+}
+
+[id$="oi"] {
+  border-left: 1px solid black;
+}
+
+.eyeTable caption {
+  caption-side: top;
+  text-align: center;
+  font-weight: bold;
+}
+
+.eyeTable tr {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed black;
+}
+
+.eyeTable small {
+  display: flex;
+  justify-content: space-between;
+}
+
+.eyeTable input {
+  margin: 0 5px;
+}
+
+.eyeTable input:checked {
+  outline: 2px solid var(--morado);
+}
+
+.eyeTable .other-justi {
+  display: flex;
+  justify-content: center;
+}
+
+tr b {
+  margin-right: 5px;
+}
