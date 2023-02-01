@@ -2,7 +2,7 @@ import React from 'react'
 
 const Iris = props => {
   return (
-    <div id={props.id} className='col-6'>
+    <div id={'iris-section-'+props.id} className='col-6'>
       <table className='eyeTable'>
         <caption>{props.title}</caption>
         <tr className='other-justi'>
