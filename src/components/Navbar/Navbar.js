@@ -3,6 +3,7 @@ import logo from './logo256.png'
 import './navbar.css'
 
 const Navbar = () => {
+  // const path = window.location.pathname 
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary custom-bg-color">
@@ -20,9 +21,14 @@ const Navbar = () => {
             <li className="nav-item">
               <a className="nav-link fs-5" href="#">Historia Clínica</a>
             </li>
-          </ul>
-        </div> */}
-      </div>
+            {/* <li className="nav-item">
+              <a className="nav-link" href="#">Pricing</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link disabled">Disabled</a>
+            </li> 
+          </ul> */}
+        </div>
     </nav>
   )
 }

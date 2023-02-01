@@ -1,11 +1,11 @@
 import React from 'react'
 import './tocList.css'
 
-const TocList = () => {
+const TocList = (props) => {
   return (
     <nav id="toc-list" className='card custom-shadow custom-lg-position'>
       <ul className='toc-ul'>
-        <li className='toc-li'>
+        <li className='toc-li' onClick={() => props.setIsOpenAnamnesis((prev) => !prev)}>
           <a className='toc-link' href='#anamnesis'>
             Anamnesis
           </a>

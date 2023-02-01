@@ -1,5 +1,5 @@
 import React from 'react'
-import EditButton from '../../../../EditButton/EditButton'
+import EditButton from '../../../../../EditButton/EditButton'
 
 const VisionInfo = () => {
   return (
