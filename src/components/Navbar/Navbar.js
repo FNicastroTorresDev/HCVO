@@ -3,6 +3,7 @@ import logo from './logo256.png'
 import './navbar.css'
 
 const Navbar = () => {
+  const path = window.location.pathname 
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary custom-bg-color">
@@ -25,6 +26,7 @@ const Navbar = () => {
             <li className="nav-item">
               <a className="nav-link disabled">Disabled</a>
             </li> */}
+            { path === '/medical-file' ? <input /> : null}
           </ul>
         </div>
       </div>

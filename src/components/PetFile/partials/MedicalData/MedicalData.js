@@ -1,25 +1,24 @@
 import React from 'react'
 import './medicalData.css'
-import CourseChecks from './CourseChecks/CourseChecks'
-import VisionInfo from './VisionInfo/VisionInfo'
-import InfoForm from './InfoForm/InfoForm'
-import EyesForm from './EyesForm/EyesForm'
-import EyeballSystemForm from './EyeballSystemForm/EyeballSystemForm'
-import OrbitalAreaForm from './OrbitalAreaForm/OrbitalAreaForm'
-import LacrimalSystem from './LacrimalSystem/LacrimalSystem'
-import EyelidsForm from './EyelidsForm/EyelidsForm'
-import ThirdEyelid from './ThirdEyelid/ThirdEyelid'
-import Conjunctivae from './Conjunctivae/Conjunctivae'
-import ScleroticCornea from './ScleroticCornea/ScleroticCornea'
-import Iris from './Iris/Iris'
-import AnterPosterCameras from './AnterPosterCameras/AnterPosterCameras'
-import Crystalline from './Crystalline/Crystalline'
-import ChecksToDo from './ChecksToDo/ChecksToDo'
+import { CourseChecks, EyesForm, InfoForm, VisionInfo } from './partials'
+import {
+  AnterPosterCameras,
+  ChecksToDo,
+  Conjunctivae,
+  Crystalline,
+  EyeballSystemForm,
+  EyelidsForm,
+  Iris,
+  LacrimalSystem,
+  OrbitalAreaForm,
+  ScleroticCornea,
+  ThirdEyelid
+} from './partials/EyesForm/components'
 
-export const MedicalData = () => {
+export const MedicalData = (props) => {
   return (
     <section id='medical-data' className='custom-box mx-2 card'>
-      <InfoForm id='anamnesis' title='Anamnesis' />
+      <InfoForm id='anamnesis' title='Anamnesis' isOpen={props.isOpenAnamnesis} />
 
       <InfoForm id='inicio' title='Inicio' />
 
