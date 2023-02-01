@@ -2,7 +2,7 @@ import React from 'react'
 
 const EyelidsForm = props => {
   return (
-    <div id={props.id} className='col-6'>
+    <div id={'eyelids-section-'+props.id} className='col-6'>
       <table className='eyeTable'>
         <caption>{props.title}</caption>
         <tr>

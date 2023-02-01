@@ -3,7 +3,7 @@ import './eyeballSystemForm.css'
 
 const EyeballSystemForm = props => {
   return (
-    <div id={props.id} className='col-6'>
+    <div id={'eyeballSystem-section-'+props.id} className='col-6'>
       <table className='eyeTable'>
         <caption>{props.title}</caption>
         <tr>

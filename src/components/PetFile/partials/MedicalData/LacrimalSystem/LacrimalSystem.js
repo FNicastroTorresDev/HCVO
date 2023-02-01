@@ -3,7 +3,7 @@ import './lacrimalSystem.css'
 
 const LacrimalSystem = props => {
   return (
-    <div id={props.id} className='col-6'>
+    <div id={'lacrimalSystem-section-'+props.id} className='col-6'>
       <table className='eyeTable'>
         <caption>{props.title}</caption>
         <tr className='other-justi'>

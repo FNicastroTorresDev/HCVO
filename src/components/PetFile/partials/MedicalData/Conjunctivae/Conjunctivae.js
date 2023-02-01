@@ -2,7 +2,7 @@ import React from 'react'
 
 const Conjunctivae = props => {
   return (
-    <div id={props.id} className='col-6'>
+    <div id={'conjuntivae-section-'+props.id} className='col-6'>
       <table className='eyeTable'>
         <caption>{props.title}</caption>
         <tr>
