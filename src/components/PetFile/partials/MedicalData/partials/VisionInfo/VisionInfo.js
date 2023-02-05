@@ -1,9 +1,9 @@
 import React from 'react'
 import EditButton from '../../../../../EditButton/EditButton'
 
-const VisionInfo = () => {
+const VisionInfo = (props) => {
   return (
-    <details id="vision" className='card p-2 my-2 margin-fondo'>
+    <details id="vision" className='card p-2 my-2 margin-fondo' open={props.isOpen}>
       <summary className='fs-5'>Visión</summary>
       <div className='d-flex flex-wrap'>
         <div className='d-flex'>
