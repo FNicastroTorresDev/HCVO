@@ -2,7 +2,7 @@ import React from 'react'
 
 const OrbitalAreaForm = props => {
   return (
-    <div id={props.id} className='col-6'>
+    <div id={'orbitalArea-section-'+props.id} className='col-6'>
       <table className='eyeTable'>
         <caption>{props.title}</caption>
         <tr>

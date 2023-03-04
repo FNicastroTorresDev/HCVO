@@ -1,0 +1,7 @@
+.custom-searcher {
+  height: 76vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

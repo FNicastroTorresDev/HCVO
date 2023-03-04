@@ -5,13 +5,13 @@ import PetFile from '../../components/PetFile/PetFile'
 
 const MedicalFileView = () => {
   return (
-    <div>
+    <main>
       <Navbar />
 
       <PetFile />
 
       <Footer />
-    </div>
+    </main>
   )
 }
 
