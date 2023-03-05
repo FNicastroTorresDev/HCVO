@@ -4,3 +4,7 @@
   --rosa-pastel: #eae0f8;
   --morado-logo: #983681;
 }
+
+* {
+  text-transform: uppercase;
+}

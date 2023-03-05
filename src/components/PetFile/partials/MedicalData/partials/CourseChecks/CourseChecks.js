@@ -2,9 +2,9 @@ import React from 'react'
 import EditButton from '../../../../../EditButton/EditButton'
 import './courseChecks.css'
 
-const CourseChecks = (props) => {
+const CourseChecks = () => {
   return (
-    <details id='curso' className='card p-2 my-2 margin-fondo' open={props.isOpen}>
+    <section id='curso' className='card p-2 my-2 margin-fondo'>
       <summary className='fs-5'>Curso</summary>
       <div className='d-flex justify-content-between'>
       <small>
@@ -38,7 +38,7 @@ const CourseChecks = (props) => {
         <p className='mx-2'>Lorem ipsum...</p>
       </small>
       <EditButton />
-    </details>
+    </section>
   )
 }
 

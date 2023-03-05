@@ -1,9 +1,9 @@
 import React from 'react'
 import EditButton from '../../../../../EditButton/EditButton'
 
-const VisionInfo = (props) => {
+const VisionInfo = () => {
   return (
-    <details id="vision" className='card p-2 my-2 margin-fondo' open={props.isOpen}>
+    <section id="vision" className='card p-2 my-2 margin-fondo'>
       <summary className='fs-5'>Visión</summary>
       <div className='d-flex flex-wrap'>
         <div className='d-flex'>
@@ -20,7 +20,7 @@ const VisionInfo = (props) => {
         </div>
       </div>
       <EditButton />
-    </details>
+    </section>
   )
 }
 
