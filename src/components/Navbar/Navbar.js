@@ -15,7 +15,7 @@ const Navbar = () => {
                 Botones provisorios
             </a>
             <ul className="dropdown-menu">
-            <li><NavLink className="dropdown-item" exact to={'/'}>Inicio</NavLink></li>
+            <li><NavLink className="dropdown-item" exact to={'/home'}>Inicio</NavLink></li>
               <li><NavLink className="dropdown-item" exact to={'/login'}>Login</NavLink></li>
               <li><NavLink className="dropdown-item" exact to={'/medical-file'}>Historia Clínica</NavLink></li>
             </ul>

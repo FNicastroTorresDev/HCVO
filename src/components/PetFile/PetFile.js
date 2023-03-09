@@ -9,7 +9,7 @@ const PetFile = () => {
   return (
     <main className='m-3 d-flex align-items-start justify-content-start'>
       <section className='d-flex flex-column flex-lg-row align-items-center align-items-lg-start'>
-        <div className='d-flex flex-column'>
+        <div className='d-flex flex-column custom-lg-position'>
           <PetCard />
 
           <QueryHistory />

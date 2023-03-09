@@ -15,90 +15,90 @@ import {
   ThirdEyelid
 } from './partials/EyesForm/components'
 
-export const MedicalData = (props) => {
+export const MedicalData = () => {
   return (
     <section id='medical-data' className='custom-box mx-2 card'>
-      <InfoForm id='anamnesis' title='Anamnesis' isOpen={props.isOpenAnamnesis} />
+      <InfoForm id='anamnesis' title='Anamnesis' />
 
-      <InfoForm id='inicio' title='Inicio' isOpen={props.isOpenInicio} />
+      <InfoForm id='inicio' title='Inicio' />
 
-      <CourseChecks isOpen={props.isOpenCourse} />
+      <CourseChecks />
 
-      <VisionInfo isOpen={props.isOpenVision}/>
+      <VisionInfo />
 
-      <InfoForm id='trat-evo' title='Tratamientos evolución' isOpen={props.isOpenTratEvo}/>
+      <InfoForm id='trat-evo' title='Tratamientos evolución' />
 
-      <EyesForm id='sist-glo-ocu' title='Sistema globo ocular' isOpen={props.isOpenSistOcular}>
+      <EyesForm id='sist-glo-ocu' title='Sistema globo ocular'>
         <EyeballSystemForm id='od' title='Ojo Derecho' />
 
         <EyeballSystemForm id='oi' title='Ojo Izquierdo' />
       </EyesForm>
 
-      <EyesForm id='area-orb' title='Área orbital' isOpen={props.isOpenAreaOrb}>
+      <EyesForm id='area-orb' title='Área orbital'>
         <OrbitalAreaForm id='od' title='Ojo Derecho' />
 
         <OrbitalAreaForm id='oi' title='Ojo Izquierdo' />
       </EyesForm>
 
-      <EyesForm id='sist-lagr' title='Sistema lagrimal' isOpen={props.isOpenSistLag}>
+      <EyesForm id='sist-lagr' title='Sistema lagrimal'>
         <LacrimalSystem id='od' title='Ojo Derecho' />
 
         <LacrimalSystem id='oi' title='Ojo Izquierdo' />
       </EyesForm>
 
-      <EyesForm id='parpados' title='Párpados' isOpen={props.isOpenParpados}>
+      <EyesForm id='parpados' title='Párpados'>
         <EyelidsForm id='od' title='Ojo Derecho' />
         
         <EyelidsForm id='oi' title='Ojo Izquierdo' />
       </EyesForm>
 
-      <EyesForm id='tercer-parp' title='3er Párpado' isOpen={props.isOpenTercerParp}>
+      <EyesForm id='tercer-parp' title='3er Párpado'>
         <ThirdEyelid id='od' title='Ojo Derecho' />
         
         <ThirdEyelid id='oi' title='Ojo Izquierdo' />
       </EyesForm>
 
-      <EyesForm id='conjuntivas' title='Conjuntivas' isOpen={props.isOpenConjuntivas}>
+      <EyesForm id='conjuntivas' title='Conjuntivas'>
         <Conjunctivae id='od' title='Ojo Derecho' />
         
         <Conjunctivae id='oi' title='Ojo Izquierdo' />
       </EyesForm>
 
-      <EyesForm id='cornea-escle' title='Córnea esclerótica' isOpen={props.isOpenCorneaEscle}>
+      <EyesForm id='cornea-escle' title='Córnea esclerótica'>
         <ScleroticCornea id='od' title='Ojo Derecho' />
         
         <ScleroticCornea id='oi' title='Ojo Izquierdo' />
       </EyesForm>
 
-      <EyesForm id='iris' title='Iris' isOpen={props.isOpenIris}>
+      <EyesForm id='iris' title='Iris'>
         <Iris id='od' title='Ojo Derecho' />
         
         <Iris id='oi' title='Ojo Izquierdo' />
       </EyesForm>
 
-      <EyesForm id='cam-ant-post' title='Cámaras anterior y posterior' isOpen={props.isOpenCamAntPost}>
+      <EyesForm id='cam-ant-post' title='Cámaras anterior y posterior'>
         <AnterPosterCameras id='od' title='Ojo Derecho' />
         
         <AnterPosterCameras id='oi' title='Ojo Izquierdo' />
       </EyesForm>
 
-      <EyesForm id='cristalino' title='Cristalino' isOpen={props.isOpenCristalino}>
+      <EyesForm id='cristalino' title='Cristalino'>
         <Crystalline id='od' title='Ojo Derecho' />
         
         <Crystalline id='oi' title='Ojo Izquierdo' />
       </EyesForm>
 
-      <EyesForm id='esquema' title='Esquema' isOpen={props.isOpenEsquema} />
+      <EyesForm id='esquema' title='Esquema' />
 
-      <EyesForm id='estudios' title='Estudios a realizar' isOpen={props.isOpenEstudios}>
+      <EyesForm id='estudios' title='Estudios a realizar'>
         <ChecksToDo />
       </EyesForm>
 
-      <InfoForm id='diagnostico' title='Diagnóstico' isOpen={props.isOpenDiagnostico} />
+      <InfoForm id='diagnostico' title='Diagnóstico' />
 
-      <InfoForm id='pronostico' title='Pronóstico' isOpen={props.isOpenPronostico} />
+      <InfoForm id='pronostico' title='Pronóstico' />
 
-      <InfoForm id='tratamiento' title='Tratamiento' isOpen={props.isOpenTratamiento} />
+      <InfoForm id='tratamiento' title='Tratamiento' />
     </section>
   )
 }

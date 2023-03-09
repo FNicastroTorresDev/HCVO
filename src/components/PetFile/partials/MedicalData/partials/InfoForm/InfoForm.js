@@ -5,7 +5,7 @@ import './infoForm.css'
 const InfoForm = props => {
   return (
     <section id={props.id} className='card p-2 my-2 margin-fondo'>
-      <summary className='fs-5'>{props.title}</summary>
+      <h4 className='fs-5'>{props.title}</h4>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra nec nulla vitae mollis.</p>
       <EditButton />
     </section>
