@@ -5,7 +5,7 @@ import './courseChecks.css'
 const CourseChecks = () => {
   return (
     <section id='curso' className='card p-2 my-2 margin-fondo'>
-      <summary className='fs-5'>Curso</summary>
+      <h4 className='fs-5'>Curso</h4>
       <div className='d-flex justify-content-between'>
       <small>
         <input id='agudo' className="custom-checkbox" type="checkbox" checked disabled name='curso' value='agudo'/>

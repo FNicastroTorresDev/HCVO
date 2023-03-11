@@ -3,8 +3,8 @@ import EditButton from "../../../../../EditButton/EditButton"
 
 const EyesForm = ({ id, title, children }) => {
   return (
-    <section id={id} className='container card p-2 my-2 margin-fondo'>
-      <summary className='fs-5'>{title}</summary>
+    <section id={props.id} className='container card p-2 my-2 margin-fondo'>
+      <h4 className='fs-5'>{props.title}</h4>
       <div className="row">
         {children}
       </div>
