@@ -19,19 +19,19 @@ const QueryHistory = () => {
           <tr>
             <td>1</td>
             <td>12/12/2022</td>
-            <td><i class="bi bi-clipboard2-fill"></i></td>
+            <td title='Ver consulta'><i class="bi bi-clipboard2-fill"></i></td>
           </tr>
 
           <tr>
             <td>2</td>
             <td>11/11/2022</td>
-            <td><i class="bi bi-clipboard2-fill"></i></td>
+            <td title='Ver consulta'><i class="bi bi-clipboard2-fill"></i></td>
           </tr>
 
           <tr>
             <td>3</td>
             <td>10/10/2022</td>
-            <td><i class="bi bi-clipboard2-fill"></i></td>
+            <td title='Ver consulta'><i class="bi bi-clipboard2-fill"></i></td>
           </tr>
         </tbody>
       </table>
