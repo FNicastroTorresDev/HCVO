@@ -1,25 +1,44 @@
 import React from 'react'
+import { useForm } from 'react-hook-form'
 
-const ThirdEyelid = props => {
+const ThirdEyelid = ({ idForm, isEditable }) => {
+  const { register, handleSubmit } = useForm()
+  
+  const onSubmit = data => {
+    console.log(data)
+  }
+
   return (
-    <div id={'thirdEyelid-section-'+props.id} className='col-6'>
-      <table className='eyeTable'>
-        <caption>{props.title}</caption>
-        <tr>
-          <small>
-            <input type='radio' name={'tercer-parp-'+props.id} className='custom-checkbox' checked disabled value='protr-glan'/>
-            protr. glan.
-          </small>
-          <small>
-            <input type='radio' name={'tercer-parp-'+props.id} className='custom-checkbox' disabled value='hipertr-glan'/>
-            hipertr. glan.
-          </small>
-          <small>
-            <input type='radio' name={'tercer-parp-'+props.id} className='custom-checkbox' disabled value='reversion'/>
-            reversión
-          </small>
-        </tr>
-      </table>
+    <div className='container'>
+      <form id={idForm} onSubmit={handleSubmit(onSubmit)} className='row p-2 margin-fondo'>
+        <div id='thirdEyelid-od' className='col-6'>
+          <table className='eyeTable'>
+            <caption>ojo derecho</caption>
+            <tr className='other-justi'>
+              {['protr. glan.','hipertr. glan.','reversion'].map( value => (
+                <small>
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OD.rowCheckbox')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+          </table>
+        </div>
+
+        <div id='thirdEyelid-oi' className='col-6'>
+          <table className='eyeTable'>
+          <caption>ojo izquierdo</caption>
+            <tr className='other-justi'>
+              {['protr. glan.','hipertr. glan.','reversion'].map( value => (
+                <small>
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OI.rowCheckbox')} disabled={!isEditable} />
+                  {value} 
+                </small>
+              ))}
+            </tr>
+          </table>
+        </div>
+      </form>
     </div>
   )
 }

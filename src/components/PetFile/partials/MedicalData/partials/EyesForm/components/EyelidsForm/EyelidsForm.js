@@ -1,40 +1,63 @@
 import React from 'react'
+import { useForm } from 'react-hook-form'
 
-const EyelidsForm = props => {
+const EyelidsForm = ({ idForm, isEditable }) => {
+  const { register, handleSubmit } = useForm()
+
+  const onSubmit = data => {
+    console.log(data)
+  }
+
   return (
-    <div id={'eyelids-section-'+props.id} className='col-6'>
-      <table className='eyeTable'>
-        <caption>{props.title}</caption>
-        <tr>
-          <small>
-            <input id={'normales-'+props.id} type='checkbox' className='custom-checkbox' checked disabled name={'parpados-'+props.id} value='normales'/>
-            normales
-          </small>
-          <small>
-            <input id={'triquiasis-'+props.id} type='checkbox' className='custom-checkbox' disabled name={'parpados-'+props.id} value='triquiasis'/>
-            triquiasis
-          </small>
-          <small>
-            <input id={'distiquiasis-'+props.id} type='checkbox' className='custom-checkbox' disabled name={'parpados-'+props.id} value='distiquiasis'/>
-            distiquiasis
-          </small>
-        </tr>
-        <tr>
-          <small>
-            <input id={'entropion-'+props.id} type='checkbox' className='custom-checkbox' checked disabled name={'parpados-'+props.id} value='entropion'/>
-            entropión
-          </small>
-          <small>
-            <input id={'electropion-'+props.id} type='checkbox' className='custom-checkbox' disabled name={'parpados-'+props.id} value='electropion'/>
-            electropión
-          </small>
-          <small>
-            <input id={'blefarospasmo-'+props.id} type='checkbox' className='custom-checkbox' disabled name={'parpados-'+props.id} value='blefarospasmo'/>
-            blefarospasmo
-          </small>
-        </tr>
-      </table>
-    </div>
+    <div className='container'>
+      <form id={idForm} onSubmit={handleSubmit(onSubmit)} className='row p-2 margin-fondo'>
+        <div id='eyelid-od' className='col-6'>
+          <table className='eyeTable'>
+            <caption>ojo derecho</caption>
+            <tr className='other-justi'>
+              {['normales','triquiasis','distiquiasis'].map( value => (
+                <small>
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OD.firstRowCheckbox')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              {['entropion','electropion','blefarospasmo'].map( value => (
+                <small>
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OD.secondRowCheckbox')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+          </table>
+        </div>
+
+        <div id='eyelid-oi' className='col-6'>
+          <table className='eyeTable'>
+            <caption>ojo izquierdo</caption>
+            <tr className='other-justi'>
+              {['normales','triquiasis','distiquiasis'].map( value => (
+                <small>
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OI.firstRowCheckbox')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              {['entropion','electropion','blefarospasmo'].map( value => (
+                <small>
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OI.secondRowCheckbox')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+          </table>
+        </div>
+      </form>
+    </div>   
   )
 }
 

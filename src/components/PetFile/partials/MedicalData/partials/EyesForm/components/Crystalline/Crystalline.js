@@ -1,43 +1,80 @@
 import React from 'react'
+import { useForm } from 'react-hook-form'
 
-const Crystalline = props => {
+const Crystalline = ({ idForm, isEditable }) => {
+  const { register, handleSubmit } = useForm()
+
+  const onSubmit = data => {
+    console.log(data)
+  }
+
   return (
-    <div id={'crystalline-section-'+props.id} className='col-6'>
-      <table className='eyeTable'>
-        <caption>{props.title}</caption>
-        <tr>
-          <small>
-            <input id='normal' className='custom-checkbox' type='checkbox' checked disabled name={'crystalline-'+props.id} value='normal'/>
-            normal
-          </small>
-          <small>
-            <input id='subluxacion' className='custom-checkbox' type='checkbox' disabled name={'crystalline-'+props.id} value='subluxacion'/>
-            subluxación
-          </small>
-          <small>
-            <input id='escle-senil' className='custom-checkbox' type='checkbox' disabled name={'crystalline-'+props.id} value='escle-senil'/>
-            esclerosis senil
-          </small>
-        </tr>
-        <tr className='other-justi'>
-          <b>luxación</b>
-          <small>
-            <input id='anterior' className='custom-checkbox' type='radio' disabled name={'luxacion-'+props.id} value='anterior'/>
-            anterior
-          </small>
-          <small>
-            <input id='posterior' className='custom-checkbox' type='radio' disabled name={'luxacion-'+props.id} value='posterior'/>
-            posterior
-          </small>
-        </tr>
-        <tr className='other-justi'>
-          <small>
-            <input id='catarata' className='custom-checkbox' type='checkbox' disabled name={'catarata-'+props.id} value='catarata'/>
-            catarata
-          </small>
-          <p>...</p>
-        </tr>
-      </table>
+    <div className='container'>
+      <form id={idForm} onSubmit={handleSubmit(onSubmit)} className='row p-2 margin-fondo'>
+        <div id='cristalino-od' className='col-6'>
+          <table className='eyeTable'>
+            <caption>ojo derecho</caption>
+            <tr className='other-justi'>
+              {['normal','subluxuacion','esclerosis senil'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OD.firsRowRadio')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>luxación</b>
+              {['anterior','posterior'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OD.secondRowRadio')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-just'>
+              <small>
+                <input key='catarata' type='checkbox' value='catarata' {...register('OD.catarataCheckbox')} disabled={!isEditable}/>
+                catarata
+              </small>
+              <input type='text' {...register('OD.catarataComentario')} disabled={!isEditable}/>
+            </tr>
+          </table>
+        </div>
+
+        <div id='cristalino-oi' className='col-6'>
+          <table className='eyeTable'>
+            <caption>ojo izquierdo</caption>
+            <tr className='other-justi'>
+              {['normal','subluxuacion','esclerosis senil'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OI.firsRowRadio')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>luxación</b>
+              {['anterior','posterior'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OI.secondRowRadio')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-just'>
+              <small>
+                <input key='catarata' type='checkbox' value='catarata' {...register('OI.catarataCheckbox')} disabled={!isEditable}/>
+                catarata
+              </small>
+              <input type='text' {...register('OI.catarataComentario')} disabled={!isEditable}/>
+            </tr>
+          </table>
+        </div>
+      </form>
     </div>
   )
 }

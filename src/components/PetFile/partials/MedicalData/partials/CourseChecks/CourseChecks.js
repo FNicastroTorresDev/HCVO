@@ -1,43 +1,72 @@
-import React from 'react'
+import React, { useState } from 'react'
 import EditButton from '../../../../../EditButton/EditButton'
 import './courseChecks.css'
+import { useForm } from 'react-hook-form'
 
-const CourseChecks = () => {
+const CourseChecks = ({ idForm, toShow }) => {
+  const [ isEditable, setIsEditable ] = useState(false) 
+  const { register, handleSubmit, watch } = useForm()
+
+  const onSubmit = data => {
+    console.log(data)
+  }
+
   return (
     <section id='curso' className='card p-2 my-2 margin-fondo'>
       <h4 className='fs-5'>Curso</h4>
-      <div className='d-flex justify-content-between'>
-      <small>
-        <input id='agudo' className="custom-checkbox" type="checkbox" checked disabled name='curso' value='agudo'/>
-        agudo
-      </small>
-      <small>
-        <input id='cronico' className="custom-checkbox" type="checkbox" disabled name='curso' value='cronico'/>
-        crónico
-      </small>
-      <small>
-        <input id='incrementado' className="custom-checkbox" type="checkbox" disabled name='curso' value='incrementado'/>
-        incrementado
-      </small>
-      <small>
-        <input id='reducido' className="custom-checkbox" type="checkbox" disabled name='curso' value='reducido'/>
-        reducido
-      </small>
-      <small>
-        <input id='estatico' className="custom-checkbox" type="checkbox" disabled name='curso' value='estatico'/>
-        estático
-      </small>
-      <small>
-        <input id='recurrencia' className="custom-checkbox" type="checkbox" disabled name='curso' value='recurrencia'/>
-        recurrencia
-      </small>
-      </div>
-      <small className='d-flex'>
-        <input id='enfer-general' className="custom-checkbox" type="checkbox" disabled name='curso' value='enfer-general'/>
-        enfermedad general: 
-        <p className='mx-2'>Lorem ipsum...</p>
-      </small>
-      <EditButton />
+      <form id={idForm} onSubmit={handleSubmit(onSubmit)}>
+        <table className='eyeTable'>
+          <tr className='other-justi'>
+            {['agudo','cronico','incrementado'].map( value => (
+              <small>
+                <input 
+                  key={value} 
+                  type='checkbox'
+                  className='custom-checkbox' 
+                  value={value} 
+                  {...register('firstRowCheckboxs')} 
+                  disabled={!isEditable}/>
+                  {value}
+              </small>
+            ))}
+          </tr>
+
+          <tr className='other-justi'>
+          {['reducido','estatico','recurrencia'].map( value => (
+              <small>
+                <input 
+                  key={value} 
+                  type='checkbox'
+                  className='custom-checkbox' 
+                  value={value} 
+                  {...register('secondRowCheckboxs')} 
+                  disabled={!isEditable}/>
+                  {value}
+              </small>
+            ))}
+          </tr>
+          
+          <tr className='other-justi'>
+            <small>
+              <input
+                key='enferGeneral'
+                type='checkbox'
+                className='custom-checkbox'
+                value={'enferGeneral'}
+                {...register('thirdRowCheckboxs')}
+                disabled={!isEditable}/>
+                Enfermedad General
+            </small>
+            <input key='comentEnferGeneral'
+              type='text'
+              className='text-custom'
+              {...register('comentEnferGeneral')}
+              disabled={!isEditable} />
+          </tr>
+        </table>
+      </form>
+
+      <EditButton idForm={idForm} isEditable={setIsEditable} />
     </section>
   )
 }
