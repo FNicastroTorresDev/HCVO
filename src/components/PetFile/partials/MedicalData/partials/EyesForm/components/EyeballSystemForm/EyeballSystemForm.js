@@ -1,119 +1,205 @@
 import React from 'react'
 import './eyeballSystemForm.css'
+import { useForm } from 'react-hook-form'
 
-const EyeballSystemForm = props => {
+const EyeballSystemForm = ({ idForm, isEditable }) => {
+  const { register, handleSubmit } = useForm()
+
+  const onSubmit = data => {
+    console.log(data)
+  }
+
   return (
-    <div id={'eyeballSystem-section-'+props.id} className='col-6'>
-      <table className='eyeTable'>
-        <caption>{props.title}</caption>
-        <tr>
-          <small>
-            <input checked disabled type='radio' name={'first-row-'+props.id} value='normal'/>
-            normal
-          </small>
-          <small>
-            <input disabled type='radio' name={'first-row-'+props.id} value='desviado'/>
-            desviado
-          </small>
-          <small>
-            <input disabled type='radio' name={'first-row-'+props.id} value='atrofia'/>
-            atrofia
-          </small>
-        </tr>
-        <tr>
-          <small>
-            <input checked disabled type='radio' name={'second-row-'+props.id} value='exoft'/>
-            exoft.
-          </small>
-          <small>
-            <input disabled type='radio' name={'second-row-'+props.id} value='enoft'/>
-            enoft.
-          </small>
-          <small>
-            <input disabled type='radio' name={'second-row-'+props.id} value='microft'/>
-            microft.
-          </small>
-          <small>
-            <input disabled type='radio' name={'second-row-'+props.id} value='buft'/>
-            buft.
-          </small>
-        </tr>
-        <tr>
-          <b>r.p. directo</b>
-          <small>
-            <input checked disabled type='radio' name={'rp-directo-'+props.id} value='dos-segs'/>
-            2 seg.
-          </small>
-          <small>
-            <input disabled type='radio' name={'rp-directo-'+props.id} value='lento'/>
-            lento
-          </small>
-          <small>
-            <input disabled type='radio' name={'rp-directo-'+props.id} value='nulo'/>
-            nulo
-          </small>
-        </tr>
-        <tr>
-          <b>r.p. const. OD→OI </b>
-          <small>
-            <input checked disabled type='radio' name={'rp-cons-'+props.id} value='dos-segs'/>
-            2 seg.
-          </small>
-          <small>
-            <input disabled type='radio' name={'rp-cons-'+props.id} value='lento'/>
-            lento
-          </small>
-          <small>
-            <input disabled type='radio' name={'rp-cons-'+props.id} value='nulo'/>
-            nulo
-          </small>
-        </tr>
-        <tr className='other-justi'>
-          <b>deambulación</b>
-          <small>
-            <input checked disabled type='radio' name={'deambulacion-'+props.id} value='mas'/>
-            +
-          </small>
-          <small>
-            <input disabled type='radio' name={'deambulacion-'+props.id} value='menos'/>
-            -
-          </small>
-        </tr>
-        <tr className='other-justi'>
-          <b>amenaza</b>
-          <small>
-            <input checked disabled type='radio' name={'amenaza-'+props.id} value='mas'/>
-            +
-          </small>
-          <small>
-            <input disabled type='radio' name={'amenaza-'+props.id} value='menos'/>
-            -
-          </small>
-        </tr>
-        <tr className='other-justi'>
-          <b>PIO</b>
-          <p>...</p>
-          <small>
-            <input checked disabled type='radio' name={'pio-'+props.id} value='abajo'/>
-            ↓
-          </small>
-          <small>
-            <input disabled type='radio' name={'pio-'+props.id} value='arriba'/>
-            ↑
-          </small>
-        </tr>
-        <tr className='other-justi'>
-          <b>pres. retrobul</b>
-          <small>
-            <input checked disabled type='radio' name={'pres-retrobul-'+props.id} value='abajo'/>
-            ↓
-          </small>
-          <small>
-            <input disabled type='radio' name={'pres-retrobul-'+props.id} value='arriba'/>
-            ↑
-          </small>
-        </tr>
-      </table>
+    <div className='container'>
+      <form id={idForm} onSubmit={handleSubmit(onSubmit)} className='row p-2 margin-fondo'>
+        <div id='eyeballSys-od' className='col-6'>
+          <table className='eyeTable'>
+            <caption>ojo derecho</caption>
+            <tr className='other-justi'>
+              {['normal','desviado','atrofia'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OD.firstRowRadio')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              {['exoft.','enoft.','microft.','buft.'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OD.secondRowRadio')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>r.p. directo</b>
+              {['2 seg','lento','nulo'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OD.rpDirecto')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>r.p. const. OD→OI</b>
+              {['2 seg','lento','nulo'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OD.rpConst')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>deslumbramiento</b>
+              {['+','-'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OD.deslum')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>amenaza</b>
+              {['+','-'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OD.amenaza')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>deambulación</b>
+              {['+','-'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OD.deambula')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>pio</b>
+              <input type='text' {...register('OD.pioComment')} disabled={!isEditable} />
+              {['↓','↑'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OD.pio')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>pres. retrobul.</b>
+              {['↓','↑'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OD.presRetro')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+          </table>
+        </div>
+
+        <div id='eyeballSys-oi' className='col-6'>
+          <table className='eyeTable'>
+            <caption>ojo izquierdo</caption>
+            <tr className='other-justi'>
+              {['normal','desviado','atrofia'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OI.firstRowRadio')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              {['exoft.','enoft.','microft.','buft.'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OI.secondRowRadio')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>r.p. directo</b>
+              {['2 seg','lento','nulo'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OI.rpDirecto')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>r.p. const. OD→OI</b>
+              {['2 seg','lento','nulo'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OI.rpConst')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>deslumbramiento</b>
+              {['+','-'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OI.deslum')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>amenaza</b>
+              {['+','-'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OI.amenaza')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>deambulación</b>
+              {['+','-'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OI.deambula')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>pio</b>
+              <input type='text' {...register('OI.pioComment')} disabled={!isEditable} />
+              {['↓','↑'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OI.pio')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-justi'>
+              <b>pres. retrobul.</b>
+              {['↓','↑'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OI.presRetro')} disabled={!isEditable} />
+                  {value}
+                </small>
+              ))}
+            </tr>
+          </table>
+        </div>
+      </form>
     </div>
   )
 }

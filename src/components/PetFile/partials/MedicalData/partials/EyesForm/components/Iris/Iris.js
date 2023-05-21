@@ -1,59 +1,84 @@
 import React from 'react'
+import { useForm } from 'react-hook-form'
 
-const Iris = props => {
+const Iris = ({ idForm, isEditable }) => {
+  const { register, handleSubmit } = useForm()
+
+  const onSubmit = data => {
+    console.log(data)
+  }
+
   return (
-    <div id={'iris-section-'+props.id} className='col-6'>
-      <table className='eyeTable'>
-        <caption>{props.title}</caption>
-        <tr className='other-justi'>
-          <b>color</b>
-          <small>
-            <input id='normal' className='custom-checkbox' type='checkbox' checked disabled name={'color-iris-'+props.id} value='normal'/>
-            normal
-          </small>
-          <small>
-            <input id='otro' className='custom-checkbox' type='checkbox' disabled name={'color-iris-'+props.id} value='otro'/>
-            <p>...</p>
-          </small>
-        </tr>
-        <tr>
-          <b>pupila</b>
-          <small>
-            <input className='custom-checkbox' type='radio' checked disabled name={'pupila-'+props.id} value='normal'/>
-            normal
-          </small>
-          <small>
-            <input className='custom-checkbox' type='radio' disabled name={'pupila-'+props.id} value='irregular'/>
-            irregular
-          </small>
-          <small>
-            <input className='custom-checkbox' type='radio' disabled name={'pupila-'+props.id} value='midriasis'/>
-            midriasis
-          </small>
-          <small>
-            <input className='custom-checkbox' type='radio' disabled name={'pupila-'+props.id} value='miosis'/>
-            miosis
-          </small>
-        </tr>
-        <tr>
-          <small>
-            <input id='atrofia' className='custom-checkbox' type='checkbox' checked disabled name={'iris-'+props.id} value='atrofia'/>
-            atrofia
-          </small>
-          <small>
-            <input id='iridonesis' className='custom-checkbox' type='checkbox' disabled name={'iris-'+props.id} value='iridonesis'/>
-            iridonesis
-          </small>
-          <small>
-            <input id='sinequias' className='custom-checkbox' type='checkbox' disabled name={'iris-'+props.id} value='sinequias'/>
-            sinequias
-          </small>
-          <small>
-            <input id='m-pupilar' className='custom-checkbox' type='checkbox' disabled name={'iris-'+props.id} value='m-pupilar'/>
-            m. pupilar
-          </small>
-        </tr>
-      </table>
+    <div className='container'>
+      <form id={idForm} onSubmit={handleSubmit(onSubmit)} className='row p-2 margin-fondo'>
+        <div id='iris-od' className='col-6'>
+          <table className='eyeTable'>
+            <caption>ojo derecho</caption>
+            <tr className='other-justi'>
+              <b>color</b>
+              {['normal','comentario'].map( value => (
+                <small>
+                  <input key={value} type='checkbox' value={value} {...register('OD.firstRowCheckboxs')} disabled={!isEditable}/>
+                  {value === 'comentario' ? <input type='text' {...register('OD.comentarioColor')} disabled={!isEditable}/> : value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-just'>
+              <b>pupila</b>
+              {['normal','irregular','midriasis','miosis'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OD.secondoRowradio')} disabled={!isEditable}/>
+                  {value}
+                </small>
+              ))}
+            </tr>
+            
+            <tr className='other-justi'>
+              {['atrofia','iridonesis','sinequias','m. pupilar'].map( value => (
+                <small>
+                  <input key={value} type='checkbox' value={value} {...register('OD.thirdRowCheckboxs')} disabled={!isEditable}/>
+                  {value}
+                </small>
+              ))}
+            </tr>
+          </table>
+        </div>
+
+        <div id='iris-oi' className='col-6'>
+          <table className='eyeTable'>
+            <caption>ojo izquierdo</caption>
+            <tr className='other-justi'>
+              <b>color</b>
+              {['normal','comentario'].map( value => (
+                <small>
+                  <input key={value} type='checkbox' value={value} {...register('OI.firstRowCheckboxs')} disabled={!isEditable}/>
+                  {value === 'comentario' ? <input type='text' {...register('OI.comentarioColor')} disabled={!isEditable}/> : value}
+                </small>
+              ))}
+            </tr>
+
+            <tr className='other-just'>
+              <b>pupila</b>
+              {['normal','irregular','midriasis','miosis'].map( value => (
+                <small>
+                  <input key={value} type='radio' value={value} {...register('OI.secondoRowradio')} disabled={!isEditable}/>
+                  {value}
+                </small>
+              ))}
+            </tr>
+            
+            <tr className='other-justi'>
+              {['atrofia','iridonesis','sinequias','m. pupilar'].map( value => (
+                <small>
+                  <input key={value} type='checkbox' value={value} {...register('OI.thirdRowCheckboxs')} disabled={!isEditable}/>
+                  {value}
+                </small>
+              ))}
+            </tr>
+          </table>
+        </div>
+      </form>
     </div>
   )
 }

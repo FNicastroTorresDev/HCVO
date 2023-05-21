@@ -14,7 +14,7 @@ function App() {
       <Route path='/login' element={<LoginPage />} />
       <Route element={<ProtectedRoute user={user} />}>
         <Route path='/home' element={<Home />} />
-        <Route path='/medical-file' element={<MedicalFileView />} />
+        <Route path='/medical-file/:petId' element={<MedicalFileView />} />
       </Route>
 
     </Switch>

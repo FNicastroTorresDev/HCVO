@@ -5,6 +5,7 @@
   features/Protected-routes[m
   features/QueryHistory[m
   features/components[m
+* [32mfeatures/info-form-inputs[m
   fix/medicalFileComponents[m
   fix/navbarDropdown[m
-* [32mmain[m
+  main[m
