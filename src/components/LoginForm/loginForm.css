@@ -33,3 +33,13 @@
 span {
   color: red;
 }
+
+.custom-error-message {
+  font-size: small;
+  border: dashed 2px red;
+  color: red;
+  background-color: lightgray;
+  padding: 8px;
+  border-radius: 5px;
+  margin: 32px auto;
+}

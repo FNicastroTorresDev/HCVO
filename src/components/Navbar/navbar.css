@@ -3,6 +3,14 @@
   padding: 0;
 }
 
+ul {
+  list-style: none;
+}
+
+button:hover {
+  font-weight: bolder;
+}
+
 .custom-bg-color {
   background-color: var(--rosa-pastel) !important;
 }

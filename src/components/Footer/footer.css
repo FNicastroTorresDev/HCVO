@@ -2,10 +2,10 @@
 
 footer {
   height: 80px;
-}
-
-.custom-bg-color {
   background-color: var(--rosa-pastel) !important;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .custom-p {
