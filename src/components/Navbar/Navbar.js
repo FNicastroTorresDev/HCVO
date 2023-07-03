@@ -2,15 +2,24 @@ import { NavLink } from 'react-router-dom'
 import logo from './logo256.png'
 import './navbar.css'
 
-const Navbar = () => {
+const Navbar = ({ isLogged }) => {
   // const path = window.location.pathname 
+
+  const closeSession = () => {
+    window.localStorage.clear('accesstoken')
+    window.localStorage.clear('user')
+    window.location.replace('/login')
+  }
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary custom-bg-color">
       <div className="container-fluid d-flex justify-content-between">
         <div className='d-flex align-items-center'>
           <NavLink className="navbar-brand" exact to={'/'}><img className='logo-size' src={logo} alt="Logo Centro Veterinario Jujuy"/></NavLink>
-          <div className='dropdown'>
+          {isLogged && <ul>
+              <button className='dropdown-item' onClick={closeSession}>Cerrar sesión</button>
+            </ul>}
+          {/* <div className='dropdown'>
             <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Botones provisorios
             </a>
@@ -19,7 +28,7 @@ const Navbar = () => {
               <li><NavLink className="dropdown-item" exact to={'/login'}>Login</NavLink></li>
               <li><NavLink className="dropdown-item" exact to={'/medical-file'}>Historia Clínica</NavLink></li>
             </ul>
-          </div>
+          </div> */}
         </div>
         <h1 className='fs-4'>Historial clínico de oftalmología</h1>
         {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
