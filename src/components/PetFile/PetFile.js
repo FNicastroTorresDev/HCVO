@@ -8,33 +8,32 @@ import { getPetData } from '../../services/pets'
 import { getMedicalData } from '../../services/medicalData'
 
 const PetFile = ({ petId = '1' }) => {
-  const [ data, setData ] = useState({})
+  const [ petData, setPetData ] = useState({})
 
   const fetchData = async (id) => {
     const [ cardData, medicalData ] = await Promise.all([
       getPetData(id),
       getMedicalData(id)
     ])
-    setData({cardData, medicalData})
+    setPetData({cardData, medicalData})
   }
   
   useEffect(() => {
     fetchData(petId)
-    
   }, [petId])
 
   return (
     <main className='m-3 d-flex align-items-start justify-content-start'>
       <section className='d-flex flex-column flex-lg-row align-items-center align-items-lg-start'>
         <div className='d-flex flex-column alig-items-center custom-lg-position'>
-          {!data.cardData
+          {!petData.cardData
             ? <div className='spinner-border'></div>
-            : <PetCard dataToShow={data.cardData} />}
+            : <PetCard dataToShow={petData.cardData} />}
 
           <QueryHistory />
         </div>
       
-        <MedicalData dataToShow={data.medicalData}/>
+        <MedicalData dataToShow={petData.medicalData}/>
         
       </section>
 

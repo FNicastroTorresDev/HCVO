@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-const Crystalline = ({ idForm, isEditable }) => {
-  const { register, handleSubmit } = useForm()
+const Crystalline = ({ idForm, isEditable, toShow, editData }) => {
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: toShow
+  })
+
+  useEffect(() => {
+    reset(toShow || {});
+  }, [reset, toShow])
 
   const onSubmit = data => {
-    console.log(data)
+    editData('cristalino', data)
   }
 
   return (
@@ -33,7 +39,7 @@ const Crystalline = ({ idForm, isEditable }) => {
               ))}
             </tr>
 
-            <tr className='other-just'>
+            <tr className='other-justi'>
               <small>
                 <input key='catarata' type='checkbox' value='catarata' {...register('OD.catarataCheckbox')} disabled={!isEditable}/>
                 catarata
@@ -65,7 +71,7 @@ const Crystalline = ({ idForm, isEditable }) => {
               ))}
             </tr>
 
-            <tr className='other-just'>
+            <tr className='other-justi'>
               <small>
                 <input key='catarata' type='checkbox' value='catarata' {...register('OI.catarataCheckbox')} disabled={!isEditable}/>
                 catarata

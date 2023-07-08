@@ -11,3 +11,16 @@ export const getMedicalData = async (id) => {
   
   return findedData.data
 }
+
+export const patchMedicalData = async ( id, prop, data ) => {
+  const body = {}
+  body[prop] = data
+
+  const response = await axios.patch(`${basePath}/${id}`, body, {
+    headers: {
+    'Content-Type': 'application/json'
+    }
+  })
+
+  return response
+}

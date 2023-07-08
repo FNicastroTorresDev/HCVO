@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-const EyelidsForm = ({ idForm, isEditable }) => {
-  const { register, handleSubmit } = useForm()
+const EyelidsForm = ({ idForm, isEditable, toShow, editData }) => {
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: toShow
+  })
+
+  useEffect(() => {
+    reset(toShow || {})
+  }, [reset, toShow])
 
   const onSubmit = data => {
-    console.log(data)
+    editData('parpados', data)
   }
 
   return (

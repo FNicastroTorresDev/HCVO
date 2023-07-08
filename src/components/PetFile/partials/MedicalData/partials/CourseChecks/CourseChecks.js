@@ -1,18 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import EditButton from '../../../../../EditButton/EditButton'
 import './courseChecks.css'
 import { useForm } from 'react-hook-form'
 
-const CourseChecks = ({ idForm, toShow }) => {
+const CourseChecks = ({ id, idForm, toShow, editData }) => {
   const [ isEditable, setIsEditable ] = useState(false) 
-  const { register, handleSubmit, watch } = useForm()
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: toShow
+  })
+
+  useEffect(() => {
+    reset(toShow || {});
+  }, [reset, toShow]);
 
   const onSubmit = data => {
-    console.log(data)
+    editData(id, data)
   }
 
   return (
-    <section id='curso' className='card p-2 my-2 margin-fondo'>
+    <section id={id} className='card p-2 my-2 margin-fondo'>
       <h4 className='fs-5'>Curso</h4>
       <form id={idForm} onSubmit={handleSubmit(onSubmit)}>
         <table className='eyeTable'>

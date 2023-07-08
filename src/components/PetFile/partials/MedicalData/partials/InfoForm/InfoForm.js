@@ -1,18 +1,20 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import EditButton from "../../../../../EditButton/EditButton"
 import { useForm } from 'react-hook-form'
 import './infoForm.css'
 
-const InfoForm = ({ id, idForm, title, toShow }) => {
+const InfoForm = ({ id, idForm, title, toShow, editData }) => {
   const [editable, setEditable] = useState(false)
-  const { register, handleSubmit  } = useForm({
-    defaultValues: {
-      textArea: 'Hola, esto es un ejemplo.'
-    }
+  const { register, handleSubmit, reset  } = useForm({
+    defaultValues: toShow
   })
 
+  useEffect(() => {
+    reset(toShow || { textArea: 'Sin datos todavía.' });
+  }, [reset, toShow]);
+
   const onSubmit = data => {
-    console.log(data)
+    editData(id, data)
   }
 
   return (
@@ -20,7 +22,6 @@ const InfoForm = ({ id, idForm, title, toShow }) => {
       <h4 className='fs-5'>{title}</h4>
       <form id={idForm} onSubmit={handleSubmit(onSubmit)} className="d-flex justify-content-center">
         <textarea disabled={!editable} {...register('textArea')}>
-          
         </textarea>
       </form>
       <EditButton idForm={idForm} isEditable={setEditable} />
