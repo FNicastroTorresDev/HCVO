@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import EditButton from "../../../../../EditButton/EditButton"
 
-const EyesForm = ({ id, title, children, idForm }) => {
+const EyesForm = ({ id, title, children, idForm, toShow }) => {
 
   const [editable, setEditable] = useState(false)
 

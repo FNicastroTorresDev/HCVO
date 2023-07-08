@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './lacrimalSystem.css'
 import { useForm } from 'react-hook-form'
-import { submitMedicalData } from '../../../../../../../../utils/submitForms'
 
-const LacrimalSystem = ({ idForm, isEditable }) => {
-  const { handleSubmit, register } = useForm()
+const LacrimalSystem = ({ idForm, isEditable, toShow, editData }) => {
+  const { handleSubmit, register, reset } = useForm({
+    defaultValues: toShow
+  })
+
+  useEffect(() => {
+    reset(toShow || {});
+  }, [reset, toShow]);
 
   const onSubmit = (data) => {
-    submitMedicalData(data)
+    editData('sistLagrimal', data);
   }
 
   return (

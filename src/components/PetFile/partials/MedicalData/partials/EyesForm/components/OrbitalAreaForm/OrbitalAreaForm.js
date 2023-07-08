@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-const OrbitalAreaForm = ({ idForm, isEditable }) => {
-  const { register, handleSubmit } = useForm()
+const OrbitalAreaForm = ({ idForm, isEditable, toShow, editData }) => {
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: toShow
+  })
+
+  useEffect(() => {
+    reset(toShow || {})
+  }, [reset, toShow])
 
   const onSubmit = data => {
-    console.log(data)
+    editData('areaOrbital', data)
   }
 
   return (
