@@ -1,0 +1,10 @@
+.back-img {
+  background-image: url(./esquema-dibujo.jpg);
+  background-size: contain
+}
+
+.canvas-btn {
+  padding: 4px;
+  margin: 0 5px;
+  font-size: smaller;
+}

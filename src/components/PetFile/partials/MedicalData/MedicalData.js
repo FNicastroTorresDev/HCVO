@@ -16,6 +16,7 @@ import {
 } from './partials/EyesForm/components'
 import Swal from 'sweetalert2'
 import { patchMedicalData } from '../../../../services/medicalData'
+import SchemaForm from './partials/EyesForm/components/SchemaForm/SchemaForm'
 
 
 export const MedicalData = ({ dataToShow }) => {
@@ -103,7 +104,9 @@ export const MedicalData = ({ dataToShow }) => {
         <Crystalline idForm='cristalinoForm' toShow={dataToShow?.data?.cristalino} editData={editData} />
       </EyesForm>
 
-      {/* <EyesForm id='esquema' title='Esquema' /> */}
+      <EyesForm id='esquema' idForm='esquemaForm' title='Esquema'>
+        <SchemaForm idForm='esquemaForm' toShow={dataToShow?.data?.esquema} editData={editData} />
+      </EyesForm>
 
       <EyesForm id='estudiosARealizar' idForm='checksToDoForm' title='Estudios a realizar'>
         <ChecksToDo idForm='checksToDoForm' toShow={dataToShow?.data?.estudiosARealizar} editData={editData} />
