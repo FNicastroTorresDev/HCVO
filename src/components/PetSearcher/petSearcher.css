@@ -5,3 +5,11 @@
   justify-content: start;
   align-items: center;
 }
+
+.custom-tbody th, td {
+  text-align: center;
+}
+
+.cursor-pointer:hover {
+  cursor: pointer;
+}

@@ -41,17 +41,14 @@ const PetSearcher = () => {
 
   return (
     <div className='my-4 custom-searcher'>
-      <div className='d-flex my-2 align-items-center'>
-        <img src={logo256} alt='Logo Centro Veterinario Jujuy' className='img-logo-size' />
-        <h2 className='mx-3 text-color'>Centro Veterinario Jujuy</h2>
-      </div>
-      <div className='w-50 input-group input-group-lg custom-shadow'>
+      
+      <div className='w-100 input-group input-group-lg custom-shadow'>
         <input 
           id='petSearcher' 
           type="text" 
           className="form-control" 
           value={search}
-          placeholder='Buscar mascota o dueño'
+          placeholder='Buscar'
           onChange={handleChange}
         />
         <button className="input-group-text" id="petSerchearBtn"><i class="bi bi-search"></i></button>
@@ -63,16 +60,16 @@ const PetSearcher = () => {
             <tr>
               <th scope="col">Mascota</th>
               <th scope="col">Especie</th>
-              <th scope="col">Dueño</th>
+              <th scope="col">DNI Dueño/a</th>
             </tr>
           </thead>
 
-          <tbody>
+          <tbody className='custom-tbody'>
             {pets && pets.map( pet => (
-              <tr key={pet._id} id={pet._id} onClick={handleClick}>
+              <tr className='cursor-pointer' key={pet._id} id={pet._id} onClick={handleClick}>
                 <th scope="row">{pet.name}</th>
                 <td>{pet.specie}</td>
-                <td>{pet.ownerFullname}</td>
+                <td>{pet.ownerDNI}</td>
               </tr>
             ))}
           </tbody>

@@ -21,3 +21,23 @@ export const getPetData = async (id) => {
   
   return findedData.data
 }
+
+export const createPet = async (data) => {
+  const response = await axios.post(basePath, data, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+
+  return response.data
+}
+
+export const editPet = async (id, data) => {
+  const response = await axios.patch(`${basePath}/${id}`, data, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+
+  return response.data
+}
