@@ -1,0 +1,8 @@
+.addButtons {
+  background-color: var(--rosa-pastel);
+  color: black;
+  border: 2px solid var(--morado);
+  display: block;
+  padding: 8px;
+  border-radius: 10px;
+}
