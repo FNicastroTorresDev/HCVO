@@ -21,3 +21,23 @@ export const getAllOwners = async () => {
 
   return response.data
 }
+
+export const editOwner = async (id, data) => {
+  const response = await axios.patch(`${basePath}/${id}`, data,{
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+
+  return response.data
+}
+
+export const deleteOneOwner = async (id) => {
+  const response = await axios.delete(`${basePath}/${id}`, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+
+  return response.data
+}

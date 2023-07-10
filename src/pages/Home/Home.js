@@ -4,6 +4,7 @@ import logo256 from '../../logo256.png'
 import AddPetOwnerButtons from '../../components/AddPetOwnerButtons/AddPetOwnerButtons'
 import AddOwnerModal from '../../components/AddOwnerModal/AddOwnerModal'
 import AddPetModal from '../../components/AddPetModal/AddPetModal'
+import TopButton from '../../components/TopButton/TopButton'
 
 const Home = () => {
   return (
@@ -16,6 +17,8 @@ const Home = () => {
       <AddPetOwnerButtons />
 
       <PetSearcher />
+
+      <TopButton />
 
       <AddOwnerModal />
       <AddPetModal />

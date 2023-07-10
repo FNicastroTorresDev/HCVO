@@ -11,6 +11,7 @@ import { getMedicalData } from '../../services/medicalData'
 const PetFile = ({ petId = '1' }) => {
   const [ petData, setPetData ] = useState({})
   const [ petToEdit, setPetToEdit ] = useState({})
+  const [ idData, setIdData ] = useState('')
 
   const fetchData = async (id) => {
     const [ cardData, medicalData ] = await Promise.all([
@@ -19,6 +20,7 @@ const PetFile = ({ petId = '1' }) => {
     ])
     setPetData({cardData, medicalData})
     setPetToEdit(cardData.pet)
+    setIdData(medicalData.data._id)
   }
   
   useEffect(() => {
@@ -42,7 +44,7 @@ const PetFile = ({ petId = '1' }) => {
 
       <TocList />
 
-      <EditPetModal dataToEdit={petToEdit} />
+      <EditPetModal dataToEdit={petToEdit} idData={idData} />
     </main>
   )
 }

@@ -41,3 +41,13 @@ export const editPet = async (id, data) => {
 
   return response.data
 }
+
+export const deleteOnePet = async (id) => {
+  const response = await axios.delete(`${basePath}/${id}`, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+
+  return response.data
+}
