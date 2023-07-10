@@ -1,0 +1,4 @@
+.small-custom:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

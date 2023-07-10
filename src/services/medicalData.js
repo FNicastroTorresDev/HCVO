@@ -24,3 +24,47 @@ export const patchMedicalData = async ( id, prop, data ) => {
 
   return response
 }
+
+export const emptyMedicalData = async (id) => {
+
+  const body = {
+    anamnesis: {},
+    inicio: {},
+    course: {},
+    vision: {},
+    tratEvo: {},
+    sistGloboOcular: {},
+    areaOrbital: {},
+    sistLagrimal: {},
+    parpados: {},
+    tercerParpado: {},
+    conjuntivas: {},
+    corneaEscle: {},
+    iris: {},
+    camAntYPost: {},
+    cristalino: {},
+    esquema: {},
+    estudiosARealizar: {},
+    diagnostico: {},
+    pronostico: {},
+    tratamiento: {}
+  }
+
+  const response = await axios.patch(`${basePath}/${id}`, body, {
+    headers: {
+    'Content-Type': 'application/json'
+    }
+  })
+
+  return response
+}
+
+export const deleteMedicalData = async (id) => {
+  const response = await axios.delete(`${basePath}/${id}`, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+
+  return response.data
+}

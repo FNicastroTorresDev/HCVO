@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { getAllOwners } from '../../services/owner'
-import { editPet } from '../../services/pets'
+import { deleteOnePet, editPet } from '../../services/pets'
 import Swal from 'sweetalert2'
+import './editPetModal.css'
+import { deleteMedicalData, emptyMedicalData } from '../../services/medicalData'
 
-const EditPetModal = ({ dataToEdit }) => {
+const EditPetModal = ({ dataToEdit, idData }) => {
   const [ isLoading, setIsLoading ] = useState(false) 
   const [ ownerList, setOwnerList ] = useState([])
   const { register, handleSubmit, reset } = useForm({
@@ -26,6 +28,70 @@ const EditPetModal = ({ dataToEdit }) => {
     }
     fetchOwners()
   }, [reset, dataToEdit])
+
+  const deletePet = async () => {
+    const id = dataToEdit._id
+
+    Swal.fire({
+      icon: 'question',
+      title: `¿Estás segura?`,
+      text: 'Los cambios no se podrán deshacer.',
+      confirmButtonText: `Sí`,
+      showCancelButton: true,
+      cancelButtonText: `Cancelar`,
+    }).then( async result => {
+      if (result.isConfirmed) {
+        try {
+          setIsLoading(true)
+          await Promise.all([deleteOnePet(id), deleteMedicalData(idData)])
+          Swal.fire({
+            icon:'success',
+            title: `Cambio realizado.`,
+            showConfirmButton: false,
+            timer: 1500
+          }).then( () => window.location.replace('/home'))
+        } catch (err) {
+          Swal.fire({
+            icon: 'error',
+            title: `${err.response.data.error}`,
+          })
+        } finally {
+          setIsLoading(false)
+        }
+      }
+    })
+  }
+
+  const toEmpyData = async () => {
+    Swal.fire({
+      icon: 'question',
+      title: `¿Estás segura?`,
+      text: 'Los cambios no se podrán deshacer.',
+      confirmButtonText: `Sí`,
+      showCancelButton: true,
+      cancelButtonText: `Cancelar`,
+    }).then( async result => {
+      if (result.isConfirmed) {
+        try {
+          setIsLoading(true)
+          await emptyMedicalData(idData)
+          Swal.fire({
+            icon:'success',
+            title: `Cambio realizado.`,
+            showConfirmButton: false,
+            timer: 1500
+          }).then( () => window.location.reload())
+        } catch (err) {
+          Swal.fire({
+            icon: 'error',
+            title: `${err.response.data.error}`,
+          })
+        } finally {
+          setIsLoading(false)
+        }
+      }
+    })
+  }
 
   const onSubmit = async data => {
     const id = dataToEdit._id
@@ -65,10 +131,10 @@ const EditPetModal = ({ dataToEdit }) => {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h1 className="modal-title fs-5" id="editPetModalLabel">Nueva Mascota</h1>
+            <h1 className="modal-title fs-5" id="editPetModalLabel">Editar Mascota</h1>
             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div className="modal-body d-flex justify-content-center">
+          <div className="modal-body d-flex flex-column align-items-center">
             <form id='editPetForm' className='w-75' onSubmit={handleSubmit(onSubmit)}>
               <div className='mb-3'>
                 <label for='petName' className='form-label'>Nombre:</label>
@@ -118,6 +184,11 @@ const EditPetModal = ({ dataToEdit }) => {
                 <input id='derivadoPor' type='text' className='form-control' maxLength='40' {...register('derivedBy')}/>
               </div>
             </form>
+
+            <div className='d-flex'>
+              <small className='mx-2 small-custom' onClick={deletePet}>Eliminar Mascota</small>
+              <small className='mx-2 small-custom' onClick={toEmpyData}>Vaciar ficha médica</small>
+            </div>
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" disabled={isLoading}>Cancelar</button>
