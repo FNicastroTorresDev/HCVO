@@ -49,7 +49,7 @@ const LacrimalSystem = ({ idForm, isEditable, toShow, editData }) => {
               {['normal', 'cantidad'].map( value => (
                 <small>
                   <input key={value} type='radio' value={value} {...register('OD.fiveRowRadio')} disabled={!isEditable} />
-                  {value === 'cantidad' ? <input type='number' className='number-custom' {...register('OD.comentarioCantidad')} disabled={!isEditable} /> : value}
+                  {value === 'cantidad' ? <input type='text' {...register('OD.comentarioCantidad')} disabled={!isEditable} /> : value}
                 </small>
               ))}
             </tr>
@@ -96,7 +96,7 @@ const LacrimalSystem = ({ idForm, isEditable, toShow, editData }) => {
               {['normal', 'cantidad'].map( value => (
                 <small>
                   <input key={value} type='radio' value={value} {...register('OI.fiveRowRadio')} disabled={!isEditable} />
-                  {value === 'cantidad' ? <input type='number' className='number-custom' {...register('OI.comentarioCantidad')} disabled={!isEditable} /> : value}
+                  {value === 'cantidad' ? <input type='text' {...register('OI.comentarioCantidad')} disabled={!isEditable} /> : value}
                 </small>
               ))}
             </tr>

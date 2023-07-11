@@ -33,7 +33,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['exoft.','enoft.','microft.','buft.'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OD.secondRowRadio')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' value={value} {...register('OD.secondRowRadio')} disabled={!isEditable} />
                   {value}
                 </small>
               ))}
@@ -127,7 +127,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['exoft.','enoft.','microft.','buft.'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OI.secondRowRadio')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' value={value} {...register('OI.secondRowRadio')} disabled={!isEditable} />
                   {value}
                 </small>
               ))}
