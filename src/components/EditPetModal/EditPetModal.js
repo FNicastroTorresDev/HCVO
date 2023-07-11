@@ -9,9 +9,10 @@ import { deleteMedicalData, emptyMedicalData } from '../../services/medicalData'
 const EditPetModal = ({ dataToEdit, idData }) => {
   const [ isLoading, setIsLoading ] = useState(false) 
   const [ ownerList, setOwnerList ] = useState([])
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, reset, watch } = useForm({
     defaultValues: dataToEdit
   })
+  const otraEspecie = watch('specie') 
 
   useEffect(() => {
     reset(dataToEdit || {})
@@ -96,6 +97,13 @@ const EditPetModal = ({ dataToEdit, idData }) => {
   const onSubmit = async data => {
     const id = dataToEdit._id
 
+    if (data.specie === 'otro') {
+      data.specie = data.otherSpecie;
+      delete data.otherSpecie;
+    }
+
+    data.ownerLastname = ownerList.find( owner => owner.ownerDNI === data.ownerDNI).lastname
+
     Swal.fire({
       icon: 'question',
       title: `¿Estás segura?`,
@@ -157,14 +165,23 @@ const EditPetModal = ({ dataToEdit, idData }) => {
               
               <div className='mb-3'>
                 <label for='especie' className='form-label'>Especie:</label>
-                <select id='especie' className='form-control' {...register('specie')}>
-                  <option value=''>Seleccionar</option>
-                  {['perro','gato','ave','equino','roedor','otros'].map( specie => (
-                    <option value={specie}>
-                      {specie}
-                    </option>
+                <div className='d-flex'>
+                  {['canino','felino','otro'].map( value => (
+                    <small className='mx-2'>
+                      <input className='mx-1' key={value} type='radio' value={value} {...register('specie', {required: {
+                        value: true,
+                        message: 'Complete este campo.'
+                      }})} />
+                      {value}
+                    </small>
                   ))}
-                </select>
+                </div>
+                {otraEspecie === 'otro' && (
+                  <small>
+                    Especificar especie: 
+                    <input className='m-1' id='otro' type='text' maxLength='25' {...register('otherSpecie')}/>
+                  </small>
+                )}
               </div>
 
               <div className='mb-3 d-flex flex-column'> 

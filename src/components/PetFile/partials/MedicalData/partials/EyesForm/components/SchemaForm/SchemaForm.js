@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import CanvasDraw from 'react-canvas-draw'
 import './schemaForm.css'
 import backImg from './esquema-dibujo.jpg'
@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 
 const SchemaForm = ({ idForm, isEditable, toShow, editData }) => {
   const canvasSchema = useRef(null)
+  const [ brushColour, setBrushColour ] = useState('red')
 
   const { register, handleSubmit, reset } = useForm({
     defaultValues: toShow
@@ -43,6 +44,14 @@ const SchemaForm = ({ idForm, isEditable, toShow, editData }) => {
     })
   }  
 
+  const changeColour = () => {
+    if (brushColour === 'red') {
+      setBrushColour('blue')
+    } else {
+      setBrushColour('red')
+    }
+  }
+
   return (
     <>
       <div>
@@ -50,8 +59,8 @@ const SchemaForm = ({ idForm, isEditable, toShow, editData }) => {
           className='border'
           ref={canvasSchema} 
           brushRadius={1} 
-          brushColor='red' 
-          catenaryColor='red'
+          brushColor={brushColour} 
+          catenaryColor={brushColour}
           imgSrc={backImg}
           hideGrid={true} 
           canvasWidth={800}
@@ -60,7 +69,8 @@ const SchemaForm = ({ idForm, isEditable, toShow, editData }) => {
         />
         <button className='canvas-btn' disabled={!isEditable} onClick={undoDrawA}>Deshacer</button>
         <button className='canvas-btn' disabled={!isEditable} onClick={clearDrawA}>Limpiar</button>
-        <small>(presionar botón morado para dibujar.)</small>
+        <button className='canvas-btn' disabled={!isEditable} onClick={changeColour}>Cambiar Color</button>
+        <small>(azul para control) (presionar botón morado para dibujar.)</small>
       </div>
 
       <form id={idForm} className='d-flex flex-column justify-content-center' onSubmit={handleSubmit(onSubmit)}>

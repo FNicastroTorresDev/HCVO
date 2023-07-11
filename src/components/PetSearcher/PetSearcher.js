@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import './petSearcher.css'
-import logo256 from '../../logo256.png'
 import { getAllPets } from '../../services/pets'
 import { useNavigate } from 'react-router-dom'
 
@@ -17,7 +16,10 @@ const PetSearcher = () => {
 
   const filterTable = searchTerm => {
     var searchResult = petsTable.filter( element => {
-      if (element.name.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())) {
+      if (
+        element.name.toString().toLowerCase().includes(searchTerm.toString().toLowerCase()) ||
+        element.ownerLastname.toString().toLowerCase().includes(searchTerm.toString().toLowerCase())
+        ) {
           return element
       }
     })
@@ -48,7 +50,7 @@ const PetSearcher = () => {
           type="text" 
           className="form-control" 
           value={search}
-          placeholder='Buscar'
+          placeholder='Apellido o Mascota'
           onChange={handleChange}
         />
         <button className="input-group-text" id="petSerchearBtn"><i class="bi bi-search"></i></button>
@@ -58,18 +60,18 @@ const PetSearcher = () => {
         <table className='table table-striped table-hover'>
           <thead>
             <tr>
+              <th scope="col">Dueño</th>
               <th scope="col">Mascota</th>
               <th scope="col">Especie</th>
-              <th scope="col">DNI Dueño/a</th>
             </tr>
           </thead>
 
           <tbody className='custom-tbody'>
             {pets && pets.map( pet => (
               <tr className='cursor-pointer' key={pet._id} id={pet._id} onClick={handleClick}>
-                <th scope="row">{pet.name}</th>
+                <th scope="row">{pet.ownerLastname}</th>
+                <td>{pet.name}</td>
                 <td>{pet.specie}</td>
-                <td>{pet.ownerDNI}</td>
               </tr>
             ))}
           </tbody>

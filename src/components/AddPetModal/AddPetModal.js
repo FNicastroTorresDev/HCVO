@@ -7,7 +7,8 @@ import Swal from 'sweetalert2'
 const AddPetModal = () => {
   const [ isLoading, setIsLoading ] = useState(false) 
   const [ ownerList, setOwnerList ] = useState([])
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit, formState: { errors }, watch } = useForm()
+  const otraEspecie = watch('specie')
 
   useEffect(() => {
     const fetchOwners = async () => {
@@ -25,7 +26,12 @@ const AddPetModal = () => {
   }, [])
 
   const onSubmit = async data => {
-    setIsLoading(true)
+    if (data.specie === 'otro') {
+      data.specie = data.otherSpecie;
+      delete data.otherSpecie;
+    }
+
+    data.ownerLastname = ownerList.find( owner => owner.ownerDNI === data.ownerDNI).lastname
 
     try {
       const created = await createPet(data)
@@ -92,17 +98,23 @@ const AddPetModal = () => {
               
               <div className='mb-3'>
                 <label for='especie' className='form-label'>Especie:</label>
-                <select id='especie' className='form-control' {...register('specie', {required: {
-                      value: true,
-                      message: 'Complete este campo.'
-                    }})}>
-                  <option value=''>Seleccionar</option>
-                  {['perro','gato','ave','equino','roedor','otros'].map( specie => (
-                    <option value={specie}>
-                      {specie}
-                    </option>
+                <div className='d-flex'>
+                  {['canino','felino','otro'].map( value => (
+                    <small className='mx-2'>
+                      <input className='mx-1' key={value} type='radio' value={value} {...register('specie', {required: {
+                        value: true,
+                        message: 'Complete este campo.'
+                      }})} />
+                      {value}
+                    </small>
                   ))}
-                </select>
+                </div>
+                {otraEspecie === 'otro' && (
+                  <small>
+                    Especificar especie: 
+                    <input className='m-1' id='otro' type='text' maxLength='25' {...register('otherSpecie')}/>
+                  </small>
+                )}
                 {errors.specie && <small className='text-danger'>{errors.specie.message}</small>}
               </div>
 
