@@ -12,6 +12,7 @@ const EditPetModal = ({ dataToEdit, idData }) => {
   const { register, handleSubmit, reset, watch } = useForm({
     defaultValues: dataToEdit
   })
+  
   const otraEspecie = watch('specie') 
 
   useEffect(() => {
