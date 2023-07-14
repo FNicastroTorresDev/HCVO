@@ -1,30 +1,20 @@
-import React, { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import React from 'react'
+import { useFormContext } from 'react-hook-form'
 
 
-const Conjunctivae = ({ idForm, isEditable, toShow, editData }) => {
-  const { register, handleSubmit, reset } = useForm({
-    defaultValues: toShow
-  })
-
-  useEffect(() => {
-    reset(toShow || {});
-  }, [reset, toShow])
-
-  const onSubmit = data => {
-    editData('conjuntivas', data)
-  }
+const Conjunctivae = () => {
+  const { register } = useFormContext()
 
   return (
     <div className='container'>
-      <form id={idForm} onSubmit={handleSubmit(onSubmit)} className='row p-2 margin-fondo'>
+      <div className='row p-2 margin-fondo'>
         <div id='conjuntivae-od' className='col-6'>
           <table className='eyeTable'>
             <caption>ojo derecho</caption>
             <tr className='other-justi'>
               {['normales','vasos sup.','vasos prof.'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OD.firstRowCheckbox')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('conjuntivas.OD.firstRowCheckbox')} />
                   {value}
                 </small>
               ))}
@@ -33,7 +23,7 @@ const Conjunctivae = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['quemosis','foliculos'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OD.secondRowCheckbox')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('conjuntivas.OD.secondRowCheckbox')} />
                   {value}
                 </small>
               ))}
@@ -43,7 +33,7 @@ const Conjunctivae = ({ idForm, isEditable, toShow, editData }) => {
               <b>secreciones</b>
               {['acuosa','mucoide','purulenta'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OD.secreciones')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('conjuntivas.OD.secreciones')} />
                   {value}
                 </small>
               ))}
@@ -57,7 +47,7 @@ const Conjunctivae = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['normales','vasos sup.','vasos prof.'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OI.firstRowCheckbox')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('conjuntivas.OI.firstRowCheckbox')} />
                   {value}
                 </small>
               ))}
@@ -66,7 +56,7 @@ const Conjunctivae = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['quemosis','foliculos'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OI.secondRowCheckbox')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('conjuntivas.OI.secondRowCheckbox')} />
                   {value}
                 </small>
               ))}
@@ -76,14 +66,14 @@ const Conjunctivae = ({ idForm, isEditable, toShow, editData }) => {
               <b>secreciones</b>
               {['acuosa','mucoide','purulenta'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OI.secreciones')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('conjuntivas.OI.secreciones')} />
                   {value}
                 </small>
               ))}
             </tr>
           </table>
         </div>
-      </form>
+      </div>
     </div>
   )
 }

@@ -7,6 +7,7 @@ import './petFile.css'
 import QueryHistory from '../QueryHistory/QueryHistory'
 import { getPetData } from '../../services/pets'
 import { getMedicalData } from '../../services/medicalData'
+import EditDataButton from './partials/EditDataButton/EditDataButton'
 
 const PetFile = ({ petId = '1' }) => {
   const [ petData, setPetData ] = useState({})
@@ -35,7 +36,8 @@ const PetFile = ({ petId = '1' }) => {
             ? <div className='spinner-border'></div>
             : <PetCard dataToShow={petData.cardData} />}
 
-          <QueryHistory />
+          <EditDataButton />
+          
         </div>
       
         <MedicalData dataToShow={petData.medicalData}/>

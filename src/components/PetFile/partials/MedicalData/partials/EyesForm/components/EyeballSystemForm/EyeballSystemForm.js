@@ -1,30 +1,20 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './eyeballSystemForm.css'
-import { useForm } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 
-const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
-  const { register, handleSubmit, reset } = useForm({
-    defaultValues: toShow
-  })
-
-  useEffect(() => {
-    reset(toShow || {});
-  }, [reset, toShow])
-
-  const onSubmit = data => {
-    editData('sistGloboOcular', data)
-  }
+const EyeballSystemForm = () => {
+  const { register } = useFormContext()
 
   return (
     <div className='container'>
-      <form id={idForm} onSubmit={handleSubmit(onSubmit)} className='row p-2 margin-fondo'>
+      <div className='row p-2 margin-fondo'>
         <div id='eyeballSys-od' className='col-6'>
           <table className='eyeTable'>
             <caption>ojo derecho</caption>
             <tr className='other-justi'>
               {['normal','desviado','atrofia'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OD.firstRowRadio')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OD.firstRowRadio')} />
                   {value}
                 </small>
               ))}
@@ -33,7 +23,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['exoft.','enoft.','microft.','buft.'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' value={value} {...register('OD.secondRowRadio')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' value={value} {...register('sistGloboOcular.OD.secondRowRadio')} />
                   {value}
                 </small>
               ))}
@@ -43,7 +33,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
               <b>r.p. directo</b>
               {['2 seg','lento','nulo'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OD.rpDirecto')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OD.rpDirecto')} />
                   {value}
                 </small>
               ))}
@@ -53,7 +43,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
               <b>r.p. const. OD→OI</b>
               {['2 seg','lento','nulo'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OD.rpConst')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OD.rpConst')} />
                   {value}
                 </small>
               ))}
@@ -63,7 +53,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
               <b>deslumbramiento</b>
               {['+','-'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OD.deslum')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OD.deslum')} />
                   {value}
                 </small>
               ))}
@@ -73,7 +63,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
               <b>amenaza</b>
               {['+','-'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OD.amenaza')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OD.amenaza')} />
                   {value}
                 </small>
               ))}
@@ -83,7 +73,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
               <b>deambulación</b>
               {['+','-'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OD.deambula')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OD.deambula')} />
                   {value}
                 </small>
               ))}
@@ -91,10 +81,10 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
 
             <tr className='other-justi'>
               <b>pio</b>
-              <input type='text' {...register('OD.pioComment')} disabled={!isEditable} />
+              <input type='text' {...register('sistGloboOcular.OD.pioComment')} />
               {['↓','↑'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OD.pio')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OD.pio')} />
                   {value}
                 </small>
               ))}
@@ -104,7 +94,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
               <b>pres. retrobul.</b>
               {['↓','↑'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OD.presRetro')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OD.presRetro')} />
                   {value}
                 </small>
               ))}
@@ -118,7 +108,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['normal','desviado','atrofia'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OI.firstRowRadio')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OI.firstRowRadio')} />
                   {value}
                 </small>
               ))}
@@ -127,7 +117,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['exoft.','enoft.','microft.','buft.'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' value={value} {...register('OI.secondRowRadio')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' value={value} {...register('sistGloboOcular.OI.secondRowRadio')} />
                   {value}
                 </small>
               ))}
@@ -137,7 +127,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
               <b>r.p. directo</b>
               {['2 seg','lento','nulo'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OI.rpDirecto')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OI.rpDirecto')} />
                   {value}
                 </small>
               ))}
@@ -147,7 +137,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
               <b>r.p. const. OD→OI</b>
               {['2 seg','lento','nulo'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OI.rpConst')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OI.rpConst')} />
                   {value}
                 </small>
               ))}
@@ -157,7 +147,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
               <b>deslumbramiento</b>
               {['+','-'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OI.deslum')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OI.deslum')} />
                   {value}
                 </small>
               ))}
@@ -167,7 +157,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
               <b>amenaza</b>
               {['+','-'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OI.amenaza')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OI.amenaza')} />
                   {value}
                 </small>
               ))}
@@ -177,7 +167,7 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
               <b>deambulación</b>
               {['+','-'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OI.deambula')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OI.deambula')} />
                   {value}
                 </small>
               ))}
@@ -185,10 +175,10 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
 
             <tr className='other-justi'>
               <b>pio</b>
-              <input type='text' {...register('OI.pioComment')} disabled={!isEditable} />
+              <input type='text' {...register('sistGloboOcular.OI.pioComment')} />
               {['↓','↑'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OI.pio')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OI.pio')} />
                   {value}
                 </small>
               ))}
@@ -198,14 +188,14 @@ const EyeballSystemForm = ({ idForm, isEditable, toShow, editData }) => {
               <b>pres. retrobul.</b>
               {['↓','↑'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OI.presRetro')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistGloboOcular.OI.presRetro')} />
                   {value}
                 </small>
               ))}
             </tr>
           </table>
         </div>
-      </form>
+      </div>
     </div>
   )
 }

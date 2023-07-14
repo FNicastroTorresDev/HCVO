@@ -1,28 +1,18 @@
-import React, { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import React from 'react'
+import { useFormContext } from 'react-hook-form'
 
-const OrbitalAreaForm = ({ idForm, isEditable, toShow, editData }) => {
-  const { register, handleSubmit, reset } = useForm({
-    defaultValues: toShow
-  })
-
-  useEffect(() => {
-    reset(toShow || {})
-  }, [reset, toShow])
-
-  const onSubmit = data => {
-    editData('areaOrbital', data)
-  }
+const OrbitalAreaForm = () => {
+  const { register } = useFormContext()
 
   return (
     <div className='container'>
-      <form id={idForm} onSubmit={handleSubmit(onSubmit)} className='row p-2 margin-fondo'>
+      <div className='row p-2 margin-fondo'>
         <div id='orbitalArea-od' className='col-6'>
           <table className='eyeTable'>
             <caption>ojo derecho</caption>
             <tr className='other-justi'>
               <label>ganglio mand.</label>
-              <input type='text' {...register('OD.ganglioMand')} disabled={!isEditable} />
+              <input type='text' {...register('areaOrbital.OD.ganglioMand')} />
             </tr>
           </table>
         </div>
@@ -32,11 +22,11 @@ const OrbitalAreaForm = ({ idForm, isEditable, toShow, editData }) => {
             <caption>ojo izquierdo</caption>
             <tr className='other-justi'>
               <label>ganglio mand.</label>
-              <input type='text' {...register('OI.ganglioMand')} disabled={!isEditable} />
+              <input type='text' {...register('areaOrbital.OI.ganglioMand')} />
             </tr>
           </table>
         </div>
-      </form>
+      </div>
     </div>
   )
 }
