@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import './medicalData.css'
+import '../../../EditButton/editButton.css'
 import { CourseChecks, EyesForm, InfoForm, VisionInfo } from './partials'
 import {
   AnterPosterCameras,
@@ -17,12 +18,26 @@ import {
 import Swal from 'sweetalert2'
 import { patchMedicalData } from '../../../../services/medicalData'
 import SchemaForm from './partials/EyesForm/components/SchemaForm/SchemaForm'
+import { useForm, FormProvider } from "react-hook-form";
 
 
 export const MedicalData = ({ dataToShow }) => {
+  const methods = useForm()
+  const { handleSubmit, reset } = methods
+  const canvasSchema = useRef(null)
 
-  const editData = (prop, dataToEdit) => {
+  useEffect(() => {
+    const data = dataToShow?.data
+    const loadData = data?.esquema?.dataDraw || ''
+    reset(data)
+    if (loadData !== '') {
+      canvasSchema.current.loadSaveData(loadData, true)
+    }
+  }, [reset, dataToShow]);
+
+  const onSubmit = async (data) => {
     const id = dataToShow.data._id
+    data.esquema['dataDraw'] = await canvasSchema.current.getSaveData()
     
     Swal.fire({
       icon: 'question',
@@ -34,7 +49,7 @@ export const MedicalData = ({ dataToShow }) => {
     }).then( async result => {
       if (result.isConfirmed) {
         try {
-          await patchMedicalData(id, prop, dataToEdit)
+          await patchMedicalData(id, data)
           Swal.fire({
             icon:'success',
             title: `Cambio realizado.`,
@@ -52,69 +67,77 @@ export const MedicalData = ({ dataToShow }) => {
   }
 
   return (
-    <section id='medical-data' className='custom-box mx-2 card'>     
+    <section id='medical-data' className='custom-box mx-2 card'>
 
-      <InfoForm id='anamnesis' idForm='anamnesisForm' title='Anamnesis' toShow={dataToShow?.data?.anamnesis} editData={editData} />
+      <FormProvider {...methods}>     
 
-      <InfoForm id='inicio' idForm='inicioForm'  title='Inicio' toShow={dataToShow?.data?.inicio} editData={editData} />
+        <form id='medicalDataForm' onSubmit={handleSubmit(onSubmit)}>
 
-      <CourseChecks id='course' idForm='cursoForm' toShow={dataToShow?.data?.course} editData={editData} />
+          <InfoForm id='anamnesis' idForm='anamnesisForm' title='Anamnesis' />
 
-      <VisionInfo id='vision' idForm='visionForm' toShow={dataToShow?.data?.vision} editData={editData} />
+          <InfoForm id='inicio' idForm='inicioForm'  title='Inicio' />
 
-      <InfoForm id='tratEvo' idForm='tratEvoForm' title='Tratamientos evolución' toShow={dataToShow?.data?.tratEvo} editData={editData} />
+          <CourseChecks id='course' />
 
-      <EyesForm id='sistGloboOcular' title='Sistema globo ocular' idForm='eyeBallSystemForm'>
-        <EyeballSystemForm idForm='eyeBallSystemForm' toShow={dataToShow?.data?.sistGloboOcular} editData={editData} />
-      </EyesForm>
+          <VisionInfo id='vision' idForm='visionForm' />
 
-      <EyesForm id='areaOrbital' title='Área orbital'idForm='areaOrbitalForm' >
-        <OrbitalAreaForm idForm='areaOrbitalForm' title='Ojo Derecho' toShow={dataToShow?.data?.areaOrbital} editData={editData} />
-      </EyesForm>
+          <InfoForm id='tratEvo' idForm='tratEvoForm' title='Tratamientos evolución' />
 
-      <EyesForm id='sistLagrimal' title='Sistema lagrimal' idForm='lacrimalSystemForm'>
-        <LacrimalSystem idForm='lacrimalSystemForm' toShow={dataToShow?.data?.sistLagrimal} editData={editData} />
-      </EyesForm>
+          <EyesForm id='sistGloboOcular' title='Sistema globo ocular'>
+            <EyeballSystemForm />
+          </EyesForm>
 
-      <EyesForm id='parpados' idForm='eyelidsForm' title='Párpados'>
-        <EyelidsForm idForm='eyelidsForm' toShow={dataToShow?.data?.parpados} editData={editData} />
-      </EyesForm>
+          <EyesForm id='areaOrbital' title='Área orbital'>
+            <OrbitalAreaForm />
+          </EyesForm>
 
-      <EyesForm id='tercerParpado' idForm='thirdEyelidForm' title='3er Párpado'>
-        <ThirdEyelid idForm='thirdEyelidForm' toShow={dataToShow?.data?.tercerParpado} editData={editData} />
-      </EyesForm>
+          <EyesForm id='sistLagrimal' title='Sistema lagrimal'>
+            <LacrimalSystem />
+          </EyesForm>
 
-      <EyesForm id='conjuntivas' idForm='conjuntivasForm' title='Conjuntivas'>
-        <Conjunctivae idForm='conjuntivasForm' toShow={dataToShow?.data?.conjuntivas} editData={editData} />
-      </EyesForm>
+          <EyesForm id='parpados' title='Párpados'>
+            <EyelidsForm />
+          </EyesForm>
 
-      <EyesForm id='corneaEscle' idForm='scleroticCorneaForm' title='Córnea esclerótica'>
-        <ScleroticCornea idForm='scleroticCorneaForm' toShow={dataToShow?.data?.corneaEscle} editData={editData} />
-      </EyesForm>
+          <EyesForm id='tercerParpado' title='3er Párpado'>
+            <ThirdEyelid />
+          </EyesForm>
 
-      <EyesForm id='iris' idForm='irisForm' title='Iris'>
-        <Iris idForm='irisForm' toShow={dataToShow?.data?.iris} editData={editData} />
-      </EyesForm>
+          <EyesForm id='conjuntivas' title='Conjuntivas'>
+            <Conjunctivae />
+          </EyesForm>
 
-      <EyesForm id='camAntYPost' idForm='camAntPostForm' title='Cámaras anterior y posterior'>
-        <AnterPosterCameras idForm='camAntPostForm' toShow={dataToShow?.data?.camAntYPost} editData={editData} />
-      </EyesForm>
+          <EyesForm id='corneaEscle' title='Córnea esclerótica'>
+            <ScleroticCornea />
+          </EyesForm>
 
-      <EyesForm id='cristalino' idForm='cristalinoForm' title='Cristalino'>
-        <Crystalline idForm='cristalinoForm' toShow={dataToShow?.data?.cristalino} editData={editData} />
-      </EyesForm>
+          <EyesForm id='iris' title='Iris'>
+            <Iris />
+          </EyesForm>
 
-      <EyesForm id='esquema' idForm='esquemaForm' title='Esquema'>
-        <SchemaForm idForm='esquemaForm' toShow={dataToShow?.data?.esquema} editData={editData} />
-      </EyesForm>
+          <EyesForm id='camAntYPost' title='Cámaras anterior y posterior'>
+            <AnterPosterCameras />
+          </EyesForm>
 
-      <EyesForm id='estudiosARealizar' idForm='checksToDoForm' title='Estudios a realizar'>
-        <ChecksToDo idForm='checksToDoForm' toShow={dataToShow?.data?.estudiosARealizar} editData={editData} />
-      </EyesForm>
+          <EyesForm id='cristalino' title='Cristalino'>
+            <Crystalline />
+          </EyesForm>
 
-      <InfoForm id='diagnostico' idForm='diagForm' title='Diagnóstico' toShow={dataToShow?.data?.diagnostico} editData={editData} />
-      <InfoForm id='pronostico' idForm='pronoForm' title='Pronóstico' toShow={dataToShow?.data?.pronostico} editData={editData} />
-      <InfoForm id='tratamiento' idForm='tratForm' title='Tratamiento' toShow={dataToShow?.data?.tratamiento} editData={editData} /> 
+           <EyesForm id='esquema' title='Esquema'>
+              <SchemaForm canvasSchema={canvasSchema} />
+          </EyesForm>
+
+          <EyesForm id='estudiosARealizar' title='Estudios a realizar'>
+            <ChecksToDo />
+          </EyesForm>
+
+          <InfoForm id='diagnostico' idForm='diagForm' title='Diagnóstico' />
+          <InfoForm id='pronostico' idForm='pronoForm' title='Pronóstico' />
+          <InfoForm id='tratamiento' idForm='tratForm' title='Tratamiento' />
+        </form>
+      </FormProvider>
+
+     
     </section>
   )
 }

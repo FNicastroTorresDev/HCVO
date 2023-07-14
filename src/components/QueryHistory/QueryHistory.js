@@ -3,7 +3,7 @@ import './queryHistory.css'
 
 const QueryHistory = () => {
   return (
-    <section id='query-history' className='mt-4 text-center card card-width custom-shadow bg-custom-color'>
+    <section id='query-history' className='mt-1 text-center card card-width custom-shadow bg-custom-color'>
       <h4>consultas</h4>
       <small>(En desarrollo)</small>
 
