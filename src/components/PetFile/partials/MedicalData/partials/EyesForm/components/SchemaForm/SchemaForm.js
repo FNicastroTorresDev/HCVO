@@ -1,30 +1,15 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import CanvasDraw from 'react-canvas-draw'
 import './schemaForm.css'
 import backImg from './esquema-dibujo.jpg'
-import { useForm } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import Swal from 'sweetalert2'
 
-const SchemaForm = ({ idForm, isEditable, toShow, editData }) => {
-  const canvasSchema = useRef(null)
+const SchemaForm = ({ canvasSchema }) => {
+  
   const [ brushColour, setBrushColour ] = useState('red')
 
-  const { register, handleSubmit, reset } = useForm({
-    defaultValues: toShow
-  })
-
-  useEffect(() => {
-    const loadData = toShow?.dataDraw || ''
-    reset(toShow || {})
-    if (loadData !== '') {
-      canvasSchema.current.loadSaveData(loadData, true)
-    }
-  }, [reset, toShow])
-
-  const onSubmit = (data) => {
-    data['dataDraw'] = canvasSchema.current.getSaveData()
-    editData('esquema', data)
-  }
+  const { register } = useFormContext()
 
   const undoDrawA = () => {
     canvasSchema.current.undo()
@@ -65,15 +50,14 @@ const SchemaForm = ({ idForm, isEditable, toShow, editData }) => {
           hideGrid={true} 
           canvasWidth={800}
           canvasHeight={380}
-          disabled={!isEditable}
         />
-        <button className='canvas-btn' disabled={!isEditable} onClick={undoDrawA}>Deshacer</button>
-        <button className='canvas-btn' disabled={!isEditable} onClick={clearDrawA}>Limpiar</button>
-        <button className='canvas-btn' disabled={!isEditable} onClick={changeColour}>Cambiar Color</button>
+        <button type='button' className='canvas-btn' onClick={undoDrawA}>Deshacer</button>
+        <button type='button' className='canvas-btn' onClick={clearDrawA}>Limpiar</button>
+        <button type='button' className='canvas-btn' onClick={changeColour}>Cambiar Color</button>
         <small>(azul para control) (presionar botón morado para dibujar.)</small>
       </div>
 
-      <form id={idForm} className='d-flex flex-column justify-content-center' onSubmit={handleSubmit(onSubmit)}>
+      <div className='d-flex flex-column justify-content-center'>
         <div className='row'>
           <div id='schema-od' className='col-6'>
             <table className='eyeTable'>
@@ -82,7 +66,7 @@ const SchemaForm = ({ idForm, isEditable, toShow, editData }) => {
                 {['retina','coroides','humor vítreo'].map( value => (
                   <small>
                     {value}
-                    <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OD.rowCheckbox')} disabled={!isEditable} />
+                    <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('esquema.OD.rowCheckbox')} />
                     <b>normal</b>
                   </small>
                 ))}
@@ -97,7 +81,7 @@ const SchemaForm = ({ idForm, isEditable, toShow, editData }) => {
                 {['retina','coroides','humor vítreo'].map( value => (
                   <small>
                     {value}
-                    <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OI.rowCheckbox')} disabled={!isEditable} />
+                    <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('esquema.OI.rowCheckbox')} />
                     <b>normal</b>
                   </small>
                 ))}
@@ -105,7 +89,7 @@ const SchemaForm = ({ idForm, isEditable, toShow, editData }) => {
             </table>
           </div>
         </div>
-      </form>
+      </div>
     </>
   )
 }

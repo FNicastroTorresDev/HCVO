@@ -1,29 +1,19 @@
-import React, { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import React from 'react'
+import { useFormContext } from 'react-hook-form'
 
-const AnterPosterCameras = ({ idForm, isEditable, toShow, editData }) => {
-  const { register, handleSubmit, reset } = useForm({
-    defaultValues: toShow
-  })
-
-  useEffect(() => {
-    reset(toShow || {});
-  }, [reset, toShow])
-
-  const onSubmit = data => {
-    editData('camAntYPost', data)
-  }
+const AnterPosterCameras = () => {
+  const { register } = useFormContext()
 
   return (
     <div className='container'>
-      <form id={idForm} onSubmit={handleSubmit(onSubmit)} className='row p-2 margin-fondo'>
+      <div className='row p-2 margin-fondo'>
         <div id='camAntPost-od' className='col-6'>
           <table className='eyeTable'>
             <caption>ojo derecho</caption>
             <tr className='other-justi'>
               {['normal','desviado','atrofia','exoft'].map( value => (
                 <small>
-                  <input key={value} type='radio' className='custom-radio' value={value} {...register('OD.firstRowRadio')} disabled={!isEditable} />
+                  <input key={value} type='radio' className='custom-radio' value={value} {...register('camAntYPost.OD.firstRowRadio')} />
                   {value}
                 </small>
               ))}
@@ -37,14 +27,14 @@ const AnterPosterCameras = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['normal','desviado','atrofia','exoft'].map( value => (
                 <small>
-                  <input key={value} type='radio' className='custom-radio' value={value} {...register('OI.firstRowRadio')} disabled={!isEditable} />
+                  <input key={value} type='radio' className='custom-radio' value={value} {...register('camAntYPost.OI.firstRowRadio')} />
                   {value}
                 </small>
               ))}
             </tr>
           </table>
         </div>
-      </form>
+      </div>
     </div>
   )
 }

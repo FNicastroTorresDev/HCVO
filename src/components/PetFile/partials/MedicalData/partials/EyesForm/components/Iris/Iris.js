@@ -1,22 +1,12 @@
-import React, { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import React from 'react'
+import { useFormContext } from 'react-hook-form'
 
-const Iris = ({ idForm, isEditable, toShow, editData }) => {
-  const { register, handleSubmit, reset } = useForm({
-    defaultValues: toShow
-  })
-
-  useEffect(() => {
-    reset(toShow || {});
-  }, [reset, toShow])
-
-  const onSubmit = data => {
-    editData('iris', data)
-  }
+const Iris = () => {
+  const { register } = useFormContext()
 
   return (
     <div className='container'>
-      <form id={idForm} onSubmit={handleSubmit(onSubmit)} className='row p-2 margin-fondo'>
+      <div className='row p-2 margin-fondo'>
         <div id='iris-od' className='col-6'>
           <table className='eyeTable'>
             <caption>ojo derecho</caption>
@@ -24,8 +14,8 @@ const Iris = ({ idForm, isEditable, toShow, editData }) => {
               <b>color</b>
               {['normal','comentario'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' value={value} {...register('OD.firstRowCheckboxs')} disabled={!isEditable}/>
-                  {value === 'comentario' ? <input type='text' {...register('OD.comentarioColor')} disabled={!isEditable}/> : value}
+                  <input key={value} type='checkbox' value={value} {...register('iris.OD.firstRowCheckboxs')} />
+                  {value === 'comentario' ? <input type='text' {...register('iris.OD.comentarioColor')} /> : value}
                 </small>
               ))}
             </tr>
@@ -34,7 +24,7 @@ const Iris = ({ idForm, isEditable, toShow, editData }) => {
               <b>pupila</b>
               {['normal','irregular','midriasis','miosis'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OD.secondoRowradio')} disabled={!isEditable}/>
+                  <input key={value} type='radio' value={value} {...register('iris.OD.secondoRowradio')} />
                   {value}
                 </small>
               ))}
@@ -43,7 +33,7 @@ const Iris = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['atrofia','iridonesis','sinequias','m. pupilar'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' value={value} {...register('OD.thirdRowCheckboxs')} disabled={!isEditable}/>
+                  <input key={value} type='checkbox' value={value} {...register('iris.OD.thirdRowCheckboxs')} />
                   {value}
                 </small>
               ))}
@@ -58,8 +48,8 @@ const Iris = ({ idForm, isEditable, toShow, editData }) => {
               <b>color</b>
               {['normal','comentario'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' value={value} {...register('OI.firstRowCheckboxs')} disabled={!isEditable}/>
-                  {value === 'comentario' ? <input type='text' {...register('OI.comentarioColor')} disabled={!isEditable}/> : value}
+                  <input key={value} type='checkbox' value={value} {...register('iris.OI.firstRowCheckboxs')} />
+                  {value === 'comentario' ? <input type='text' {...register('iris.OI.comentarioColor')} /> : value}
                 </small>
               ))}
             </tr>
@@ -68,7 +58,7 @@ const Iris = ({ idForm, isEditable, toShow, editData }) => {
               <b>pupila</b>
               {['normal','irregular','midriasis','miosis'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OI.secondoRowradio')} disabled={!isEditable}/>
+                  <input key={value} type='radio' value={value} {...register('iris.OI.secondoRowradio')} />
                   {value}
                 </small>
               ))}
@@ -77,14 +67,14 @@ const Iris = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['atrofia','iridonesis','sinequias','m. pupilar'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' value={value} {...register('OI.thirdRowCheckboxs')} disabled={!isEditable}/>
+                  <input key={value} type='checkbox' value={value} {...register('iris.OI.thirdRowCheckboxs')} />
                   {value}
                 </small>
               ))}
             </tr>
           </table>
         </div>
-      </form>
+      </div>
     </div>
   )
 }

@@ -1,26 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import EditButton from '../../../../../EditButton/EditButton'
+import React from 'react'
 import './courseChecks.css'
-import { useForm } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 
-const CourseChecks = ({ id, idForm, toShow, editData }) => {
-  const [ isEditable, setIsEditable ] = useState(false) 
-  const { register, handleSubmit, reset } = useForm({
-    defaultValues: toShow
-  })
-
-  useEffect(() => {
-    reset(toShow || {});
-  }, [reset, toShow]);
-
-  const onSubmit = data => {
-    editData(id, data)
-  }
+const CourseChecks = ({ id }) => {
+  const { register } = useFormContext()
 
   return (
     <section id={id} className='card p-2 my-2 margin-fondo'>
       <h4 className='fs-5'>Curso</h4>
-      <form id={idForm} onSubmit={handleSubmit(onSubmit)}>
+      <div>
         <table className='eyeTable'>
           <tr className='other-justi'>
             {['agudo','cronico','incrementado'].map( value => (
@@ -30,8 +18,7 @@ const CourseChecks = ({ id, idForm, toShow, editData }) => {
                   type='checkbox'
                   className='custom-checkbox' 
                   value={value} 
-                  {...register('firstRowCheckboxs')} 
-                  disabled={!isEditable}/>
+                  {...register('course.firstRowCheckboxs')} />
                   {value}
               </small>
             ))}
@@ -45,8 +32,7 @@ const CourseChecks = ({ id, idForm, toShow, editData }) => {
                   type='checkbox'
                   className='custom-checkbox' 
                   value={value} 
-                  {...register('secondRowCheckboxs')} 
-                  disabled={!isEditable}/>
+                  {...register('course.secondRowCheckboxs')} />
                   {value}
               </small>
             ))}
@@ -59,20 +45,16 @@ const CourseChecks = ({ id, idForm, toShow, editData }) => {
                 type='checkbox'
                 className='custom-checkbox'
                 value={'enferGeneral'}
-                {...register('thirdRowCheckboxs')}
-                disabled={!isEditable}/>
+                {...register('course.thirdRowCheckboxs')} />
                 Enfermedad General
             </small>
             <input key='comentEnferGeneral'
               type='text'
               className='text-custom'
-              {...register('comentEnferGeneral')}
-              disabled={!isEditable} />
+              {...register('course.comentEnferGeneral')} />
           </tr>
         </table>
-      </form>
-
-      <EditButton idForm={idForm} isEditable={setIsEditable} />
+      </div>
     </section>
   )
 }

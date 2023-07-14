@@ -1,29 +1,19 @@
-import React, { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import React from 'react'
+import { useFormContext } from 'react-hook-form'
 
-const ScleroticCornea = ({ idForm, isEditable, toShow, editData }) => {
-  const { register, handleSubmit, reset } = useForm({
-    defaultValues: toShow
-  })
-
-  useEffect(() => {
-    reset(toShow || {});
-  }, [reset, toShow])
-
-  const onSubmit = data => {
-    editData('corneaEscle', data)
-  }
+const ScleroticCornea = () => {
+  const { register } = useFormContext()
 
   return (
     <div className='container'>
-      <form id={idForm} onSubmit={handleSubmit(onSubmit)} className='row p-2 margin-fondo'>
+      <div className='row p-2 margin-fondo'>
         <div id='scleroticCornea-od' className='col-6'>
           <table className='eyeTable'>
             <caption>ojo derecho</caption>
             <tr className='other-justi'>
               {['normal','edema','endotelitis'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OD.firstRowCheckbox')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('corneaEscle.OD.firstRowCheckbox')} />
                   {value}
                 </small>
               ))}
@@ -32,7 +22,7 @@ const ScleroticCornea = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['vasc.','pigm.','ulcera'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OD.secondRowCheckbox')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('corneaEscle.OD.secondRowCheckbox')} />
                   {value}
                 </small>
               ))}
@@ -41,7 +31,7 @@ const ScleroticCornea = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['fluoresceina','rosa de bengala'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OD.thirdRowChexbox')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('corneaEscle.OD.thirdRowChexbox')} />
                   {value}
                 </small>
               ))}
@@ -51,11 +41,11 @@ const ScleroticCornea = ({ idForm, isEditable, toShow, editData }) => {
 
         <div id='scleroticCornea-oi' className='col-6'>
           <table className='eyeTable'>
-            <caption>ojo derecho</caption>
+            <caption>ojo izquierdo</caption>
             <tr className='other-justi'>
               {['normal','edema','endotelitis'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OI.firstRowCheckbox')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('corneaEscle.OI.firstRowCheckbox')} />
                   {value}
                 </small>
               ))}
@@ -64,7 +54,7 @@ const ScleroticCornea = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['vasc.','pigm.','ulcera'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OI.secondRowCheckbox')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('corneaEscle.OI.secondRowCheckbox')} />
                   {value}
                 </small>
               ))}
@@ -73,14 +63,14 @@ const ScleroticCornea = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['fluoresceina','rosa de bengala'].map( value => (
                 <small>
-                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('OI.thirdRowChexbox')} disabled={!isEditable} />
+                  <input key={value} type='checkbox' className='custom-checkbox' value={value} {...register('corneaEscle.OI.thirdRowChexbox')} />
                   {value}
                 </small>
               ))}
             </tr>
           </table>
         </div>
-      </form>
+      </div>
     </div>
   )
 }

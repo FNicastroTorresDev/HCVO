@@ -1,28 +1,18 @@
-import React, { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import React from 'react'
+import { useFormContext } from 'react-hook-form'
 
-const ChecksToDo = ({ idForm, isEditable, toShow, editData }) => {
-  const { register, handleSubmit, reset } = useForm({
-    defaultValues: toShow
-  })
-
-  useEffect(() => {
-    reset(toShow || {});
-  }, [reset, toShow])
-
-  const onSubmit = data => {
-    editData('estudiosARealizar', data)
-  }
+const ChecksToDo = () => {
+  const { register } = useFormContext()
 
   return (
     <div className='container'>
-      <form id={idForm} onSubmit={handleSubmit(onSubmit)} className='row p-2 margin-fondo'>
+      <div className='row p-2 margin-fondo'>
         <table className='eyeTable'>
           <caption>análisis</caption>
           <tr className='other-justi'>
             {['hemograma','uremia','creatinina','glucemia','GOT','GPT','FAS','PIF-VIF-VILEF'].map( value => (
               <small>
-                <input key={value} type='checkbox' value={value} {...register('analisisFirstRow')} disabled={!isEditable} />
+                <input key={value} type='checkbox' value={value} {...register('estudiosARealizar.analisisFirstRow')} />
                 {value}
               </small>
             ))}
@@ -31,7 +21,7 @@ const ChecksToDo = ({ idForm, isEditable, toShow, editData }) => {
           <tr className='other-justi'>
             {['toxoplasmosis','leptospirosis','criptococosis','neosporidiosis','brucelosis','lehismaniasis'].map( value => (
               <small>
-                <input key={value} type='checkbox' value={value} {...register('analisisSecondRow')} disabled={!isEditable} />
+                <input key={value} type='checkbox' value={value} {...register('estudiosARealizar.analisisSecondRow')} />
                 {value}
               </small>
             ))}
@@ -39,23 +29,23 @@ const ChecksToDo = ({ idForm, isEditable, toShow, editData }) => {
 
           <tr className='other-justi'>
             <small>
-              <input key='ecografia' type='checkbox' value='ecografia' {...register('ecografiaCheckbox')} disabled={!isEditable}/>
+              <input key='ecografia' type='checkbox' value='ecografia' {...register('estudiosARealizar.ecografiaCheckbox')} />
               ecografía
             </small>
 
-            <input type='text' {...register('ecoComentario')} disabled={!isEditable}/>
+            <input type='text' {...register('estudiosARealizar.ecoComentario')} />
           </tr>
 
           <tr className='other-justi'>
             <small>
-              <input key='electro' type='checkbox' value='electro' {...register('electroCheck')} disabled={!isEditable}/>
+              <input key='electro' type='checkbox' value='electro' {...register('estudiosARealizar.electroCheck')} />
               electrocardiograma: evaluar riesgos
             </small>
 
-            <input type='text' {...register('electroComentario')} disabled={!isEditable}/>
+            <input type='text' {...register('estudiosARealizar.electroComentario')} />
           </tr>
         </table>
-      </form>
+      </div>
     </div>
   )
 }

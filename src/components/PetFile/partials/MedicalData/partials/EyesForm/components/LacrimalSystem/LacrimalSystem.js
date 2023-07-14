@@ -1,55 +1,45 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './lacrimalSystem.css'
-import { useForm } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 
-const LacrimalSystem = ({ idForm, isEditable, toShow, editData }) => {
-  const { handleSubmit, register, reset } = useForm({
-    defaultValues: toShow
-  })
-
-  useEffect(() => {
-    reset(toShow || {});
-  }, [reset, toShow]);
-
-  const onSubmit = (data) => {
-    editData('sistLagrimal', data);
-  }
+const LacrimalSystem = () => {
+  const { register } = useFormContext()
 
   return (
     <div className='container'>
-      <form id={idForm} onSubmit={handleSubmit(onSubmit)} className='row p-2 margin-fondo'>
+      <div className='row p-2 margin-fondo'>
         <div id='sistLagr-od' className='col-6'>
           <table className='eyeTable'>
             <caption>ojo derecho</caption>
             <tr className='other-justi'>
               {['normal', 'epifora'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OD.firsRowRadio')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistLagrimal.OD.firsRowRadio')} />
                   {value}
                 </small>
               ))}
             </tr>
             <tr className='other-justi'>
               <b>Schimer</b>
-              <input className='number-custom' id='schimer' type='number' {...register('OD.schimer')} disabled={!isEditable} />
+              <input className='number-custom' id='schimer' type='number' {...register('sistLagrimal.OD.schimer')} />
               <small>mm/min</small>
             </tr>
             <tr className='other-justi'>
               <b>disp. fluoresc.</b>
-              <input className='number-custom' id='disp-fluor' type='number' {...register('OD.dispFluor')} disabled={!isEditable} />
+              <input className='number-custom' id='disp-fluor' type='number' {...register('sistLagrimal.OD.dispFluor')} />
               <small>" v.n. 15"</small>
             </tr>
             <tr className='other-justi'>
               <b>pasaje de fluor</b>
-              <input className='number-custom' id='pasaje-fluor' type='number' {...register('OD.pasajeFluor')} disabled={!isEditable} />
+              <input className='number-custom' id='pasaje-fluor' type='number' {...register('sistLagrimal.OD.pasajeFluor')} />
               <small>' v.n. 1-5'</small>
             </tr>
             <tr className='other-justi'>
               <b>puntos</b>
               {['normal', 'cantidad'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OD.fiveRowRadio')} disabled={!isEditable} />
-                  {value === 'cantidad' ? <input type='text' {...register('OD.comentarioCantidad')} disabled={!isEditable} /> : value}
+                  <input key={value} type='radio' value={value} {...register('sistLagrimal.OD.fiveRowRadio')}  />
+                  {value === 'cantidad' ? <input type='text' {...register('sistLagrimal.OD.comentarioCantidad')}  /> : value}
                 </small>
               ))}
             </tr>
@@ -57,7 +47,7 @@ const LacrimalSystem = ({ idForm, isEditable, toShow, editData }) => {
               <b>cateterismo</b>
               {['+','-'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OD.lastRowRadio')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistLagrimal.OD.lastRowRadio')} />
                   {value}
                 </small>
               ))}
@@ -71,32 +61,32 @@ const LacrimalSystem = ({ idForm, isEditable, toShow, editData }) => {
             <tr className='other-justi'>
               {['normal', 'epifora'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OI.firsRowRadio')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistLagrimal.OI.firsRowRadio')} />
                   {value}
                 </small>
               ))}
             </tr>
             <tr className='other-justi'>
               <b>Schimer</b>
-              <input className='number-custom' id='schimer' type='number' {...register('OI.schimer')} disabled={!isEditable} />
+              <input className='number-custom' id='schimer' type='number' {...register('sistLagrimal.OI.schimer')} />
               <small>mm/min</small>
             </tr>
             <tr className='other-justi'>
               <b>disp. fluoresc.</b>
-              <input className='number-custom' id='disp-fluor' type='number' {...register('OI.dispFluor')} disabled={!isEditable} />
+              <input className='number-custom' id='disp-fluor' type='number' {...register('sistLagrimal.OI.dispFluor')} />
               <small>" v.n. 15"</small>
             </tr>
             <tr className='other-justi'>
               <b>pasaje de fluor</b>
-              <input className='number-custom' id='pasaje-fluor' type='number' {...register('OI.pasajeFluor')} disabled={!isEditable} />
+              <input className='number-custom' id='pasaje-fluor' type='number' {...register('sistLagrimal.OI.pasajeFluor')} />
               <small>' v.n. 1-5'</small>
             </tr>
             <tr className='other-justi'>
               <b>puntos</b>
               {['normal', 'cantidad'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OI.fiveRowRadio')} disabled={!isEditable} />
-                  {value === 'cantidad' ? <input type='text' {...register('OI.comentarioCantidad')} disabled={!isEditable} /> : value}
+                  <input key={value} type='radio' value={value} {...register('sistLagrimal.OI.fiveRowRadio')} />
+                  {value === 'cantidad' ? <input type='text' {...register('sistLagrimal.OI.comentarioCantidad')}  /> : value}
                 </small>
               ))}
             </tr>
@@ -104,14 +94,14 @@ const LacrimalSystem = ({ idForm, isEditable, toShow, editData }) => {
               <b>cateterismo</b>
               {['+','-'].map( value => (
                 <small>
-                  <input key={value} type='radio' value={value} {...register('OI.lastRowRadio')} disabled={!isEditable} />
+                  <input key={value} type='radio' value={value} {...register('sistLagrimal.OI.lastRowRadio')} />
                   {value}
                 </small>
               ))}
             </tr>
           </table>
         </div>
-      </form>
+      </div>
     </div>
   )
 }
