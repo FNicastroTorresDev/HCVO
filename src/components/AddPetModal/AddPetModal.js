@@ -31,7 +31,7 @@ const AddPetModal = () => {
       delete data.otherSpecie;
     }
 
-    data.ownerLastname = ownerList.find( owner => owner.ownerDNI === data.ownerDNI).lastname
+    data.ownerLastname = ownerList.find( owner => owner._id === data.ownerID).lastname
 
     try {
       const created = await createPet(data)
@@ -47,7 +47,7 @@ const AddPetModal = () => {
       Swal.fire({
         icon: 'error',
         title: `${err.response.data.error}`,
-        text: `${err.response.data?.fields?.name} - ${err.response.data?.fields?.specie} - ${err.response.data?.fields?.ownerDNI}`
+        text: `${err.response.data?.fields?.name} - ${err.response.data?.fields?.specie} - ${err.response.data?.fields?.ownerID}`
       })
     } finally {
       setIsLoading(false)
@@ -80,20 +80,20 @@ const AddPetModal = () => {
               </div>
 
               <div className='mb-3'>
-                <label for='dni' className='form-label'>Dueño/a:</label>
+                <label for='id' className='form-label'>Dueño/a:</label>
                 {isLoading
                   ? <div className="spinner-border spinner-border-sm"></div>
-                  : <select id='dni' className='form-control' {...register('ownerDNI', {required: {
+                  : <select id='id' className='form-control' {...register('ownerID', {required: {
                       value: true,
                       message: 'Complete este campo.'
                     }})}>
                       <option value=''>Seleccionar</option>
                       {ownerList.map( owner => (
-                        <option value={owner.ownerDNI}>
+                        <option value={owner._id}>
                           {`${owner.firstname} ${owner.lastname}`}
                         </option>))}          
                     </select>}
-                {errors.ownerDNI && <small className='text-danger'>{errors.ownerDNI.message}</small>}
+                {errors.ownerID && <small className='text-danger'>{errors.ownerID.message}</small>}
               </div>
               
               <div className='mb-3'>

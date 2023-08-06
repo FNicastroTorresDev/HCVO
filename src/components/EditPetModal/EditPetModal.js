@@ -103,7 +103,7 @@ const EditPetModal = ({ dataToEdit, idData }) => {
       delete data.otherSpecie;
     }
 
-    data.ownerLastname = ownerList.find( owner => owner.ownerDNI === data.ownerDNI).lastname
+    data.ownerLastname = ownerList.find( owner => owner._id === data.ownerID).lastname
 
     Swal.fire({
       icon: 'question',
@@ -151,13 +151,13 @@ const EditPetModal = ({ dataToEdit, idData }) => {
               </div>
 
               <div className='mb-3'>
-                <label for='dni' className='form-label'>Dueño/a:</label>
+                <label for='id' className='form-label'>Dueño/a:</label>
                 {isLoading
                   ? <div className="spinner-border spinner-border-sm"></div>
-                  : <select id='dni' className='form-control' {...register('ownerDNI')}>
+                  : <select id='id' className='form-control' {...register('ownerID')}>
                       <option value=''>Seleccionar</option>
                       {ownerList.map( owner => (
-                        <option value={owner.ownerDNI}>
+                        <option value={owner._id}>
                           {`${owner.firstname} ${owner.lastname}`}
                         </option>))}          
                     </select>}
