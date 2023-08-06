@@ -1,3 +1,7 @@
 .top-caption {
   caption-side: top;
 }
+
+th {
+  text-align: center;
+}

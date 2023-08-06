@@ -61,25 +61,6 @@ const EditOwnerModal = ({ handleClose, dataToEdit }) => {
           <div className="modal-body d-flex justify-content-center">
             <form id='editOwnerForm' className='w-75' onSubmit={handleSubmit(onSubmit)}>
               <div className='mb-3'>
-                <label for='dni' className='form-label'>DNI:</label>
-                <input id='dni' type='text' className='form-control' maxLength='8' {...register('ownerDNI', {
-                  required: {
-                    value: true,
-                    message: 'Complete este campo.'
-                  },
-                  minLength: {
-                    value: 7,
-                    message: 'El DNI debe tener al menos 7 dígitos.'
-                  },
-                  pattern: {
-                    value: /^[0-9]*$/g,
-                    message: 'Ingrese solamente números.'
-                  }
-                })}/>
-                {errors.ownerDNI && <small className='text-danger'>{errors.ownerDNI.message}</small>}
-              </div>
-
-              <div className='mb-3'>
                 <label for='firstname' className='form-label'>Nombre:</label>
                 <input id='firstname' type='text' className='form-control' maxLength='35' {...register('firstname', {
                   required: {

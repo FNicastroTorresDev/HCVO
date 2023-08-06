@@ -70,7 +70,6 @@ const OwnerTable = () => {
         <table className='table table-striped table-hover'>
           <thead>
             <tr>
-              <th scope="col">DNI</th>
               <th scope="col">Nombre</th>
               <th scope="col">Apellido</th>
               <th scope="col">Tel. Contacto</th>
@@ -83,9 +82,8 @@ const OwnerTable = () => {
 
             {ownerData.map( owner => (
               <tr>
-                <th scope='row'>{owner.ownerDNI}</th>
+                <th scope='row'>{owner.lastname}</th>
                 <td>{owner.firstname}</td>
-                <td>{owner.lastname}</td>
                 <td>{owner.phoneNumber}</td>
                 <td>{owner.altPhoneNumber}</td>
                 <td id={owner._id}>

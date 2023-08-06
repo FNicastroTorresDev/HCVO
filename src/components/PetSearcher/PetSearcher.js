@@ -66,7 +66,7 @@ const PetSearcher = () => {
             </tr>
           </thead>
 
-          <tbody className='custom-tbody'>
+          <tbody className='custom-tbody table-group-divider'>
             {pets && pets.map( pet => (
               <tr className='cursor-pointer' key={pet._id} id={pet._id} onClick={handleClick}>
                 <th scope="row">{pet.ownerLastname}</th>
